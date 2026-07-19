@@ -1,9 +1,5 @@
-// =====================================================
-// Aegis - Public Chaos Trigger API
-// Safe, rate-limited, allowlisted chaos injection for
-// the hosted demo dashboard (no shell/docker access needed by callers)
-// =====================================================
-
+// Rate-limited, allowlisted chaos injection for the hosted demo dashboard —
+// no shell/docker access needed by callers.
 import express, { Router } from 'express';
 import rateLimit from 'express-rate-limit';
 import axios from 'axios';
