@@ -203,13 +203,7 @@ aegis/
 └── docker-compose.yml
 ```
 
-## Hosting a Public Demo
 
-Aegis runs locally by default. [`deploy/runbook.md`](deploy/runbook.md) walks through putting a hardened, live version on the internet for free — an Oracle Cloud Always Free VM + `sslip.io` (no domain purchase needed) + Caddy for automatic HTTPS. The public build:
-
-- Gates the manual `/heal` override behind an admin token
-- Only exposes the rate-limited, allowlisted chaos-trigger endpoint to visitors
-- Runs the real Docker-backed healing actions — not a simulation
 
 ## Roadmap
 
