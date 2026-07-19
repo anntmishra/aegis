@@ -17,39 +17,46 @@ gh repo create aegis --public --source=. --push
 #   git push -u origin main
 ```
 
-## 2. Create the free VM (Oracle Cloud "Always Free")
+## 2. Create the VM (Azure)
 
-1. Sign up at https://signup.oraclecloud.com (needs a card for identity
-   verification only — the Always Free shapes are never billed).
-2. Compute → Instances → Create Instance.
-3. Shape: pick an **Ampere (ARM) `VM.Standard.A1.Flex`** shape — the free tier
-   includes up to 4 OCPUs / 24GB RAM total across your Ampere instances.
-   (If Ampere capacity is unavailable in your region, the `VM.Standard.E2.1.Micro`
-   x86 shape is also Always Free, just smaller — this stack will still run on it.)
-4. Image: Ubuntu 22.04 (or later LTS).
-5. Add your SSH public key under "Add SSH keys".
-6. Create the instance and note its **public IP address**.
+Using the Azure account you already have (Student or the standard 12-months-free
+account both work the same way from here):
 
-## 3. Open ports 80 and 443
+1. [portal.azure.com](https://portal.azure.com) → **Virtual machines** → **Create** → **Azure virtual machine**.
+2. **Basics** tab:
+   - Image: **Ubuntu Server 22.04 LTS** (or later LTS).
+   - Size: click "See all sizes" and pick **`B1s`** (1 vCPU/1GB) if you want to
+     stay inside the free-tier hours — it's enough for this stack, but tight.
+     If you'd rather have headroom and don't mind it drawing down your credit
+     instead, **`B1ms`** or **`B2s`** (2-4GB RAM) runs the 6 containers more
+     comfortably. You can resize the VM later without recreating it if `B1s`
+     turns out too tight.
+   - Authentication type: **SSH public key** — either upload your own
+     (`~/.ssh/id_ed25519.pub`) or let Azure generate a new pair for you to download.
+3. **Networking** tab: leave the default new virtual network/subnet. Under
+   "Public inbound ports", select **Allow selected ports** and add **HTTP (80)**,
+   **HTTPS (443)**, and **SSH (22)** — this creates the Network Security Group
+   rules for you, equivalent to Oracle's security list step.
+4. **Review + create** → **Create**. Once it's deployed, note the VM's
+   **public IP address** from the resource's overview page.
 
-Oracle's default security list blocks inbound traffic beyond SSH. Two places
-to open, both required:
+If you'd rather script this than click through the portal:
+```bash
+az vm create \
+  --resource-group <your-resource-group> \
+  --name aegis-vm \
+  --image Ubuntu2204 \
+  --size Standard_B1s \
+  --admin-username azureuser \
+  --generate-ssh-keys
+az vm open-port --resource-group <your-resource-group> --name aegis-vm --port 80 --priority 900
+az vm open-port --resource-group <your-resource-group> --name aegis-vm --port 443 --priority 901
+```
 
-- **Oracle Console**: Networking → Virtual Cloud Networks → your VCN →
-  Security Lists → default security list → Add Ingress Rules:
-  - Source `0.0.0.0/0`, TCP, destination port `80`
-  - Source `0.0.0.0/0`, TCP, destination port `443`
-- **On the VM itself** (Oracle's Ubuntu images also run `iptables`/`ufw`):
-  ```bash
-  sudo iptables -I INPUT -p tcp --dport 80 -j ACCEPT
-  sudo iptables -I INPUT -p tcp --dport 443 -j ACCEPT
-  sudo netfilter-persistent save   # if installed; otherwise the rule is enough for this session
-  ```
-
-## 4. Install Docker on the VM
+## 3. Install Docker on the VM
 
 ```bash
-ssh ubuntu@<VM_PUBLIC_IP>
+ssh <the-admin-username-you-set>@<VM_PUBLIC_IP>
 
 curl -fsSL https://get.docker.com | sudo sh
 sudo usermod -aG docker $USER
@@ -57,7 +64,7 @@ newgrp docker
 docker compose version   # confirm the compose plugin is present
 ```
 
-## 5. Clone the repo and configure secrets
+## 4. Clone the repo and configure secrets
 
 ```bash
 git clone https://github.com/<you>/aegis.git
@@ -79,7 +86,7 @@ can still get you a genuine Let's Encrypt certificate.
 call the manual `/heal` override yourself later; nobody else can trigger it
 without this value.
 
-## 6. Bring the stack up
+## 5. Bring the stack up
 
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
@@ -95,7 +102,7 @@ https://<the DOMAIN value from your .env>
 You should see the dashboard, live metrics updating every 3 seconds, and an
 "Inject Chaos" button row.
 
-## 7. Verify the safety layer
+## 6. Verify the safety layer
 
 ```bash
 # Should be rate-limited/cooldown-protected, not open season:
@@ -112,7 +119,7 @@ curl -X POST https://<domain>/api/healer/heal/service-a \
   -d '{"action":"restart"}'
 ```
 
-## 8. Redeploying after future changes
+## 7. Redeploying after future changes
 
 ```bash
 cd aegis
@@ -122,9 +129,15 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 
 ## Ongoing costs
 
-- Oracle Always Free VM: **$0/mo**, no expiry, as long as you stay within the
-  free-tier shape limits.
-- `sslip.io` + Let's Encrypt via Caddy: **$0**.
-- The only real cost risk is Oracle's identity-verification card being
-  charged if you exceed free-tier resources — this stack (6 small containers)
-  stays comfortably inside them.
+- **Azure for Students**: ~$100 credit, valid 12 months, no card on file — a
+  `B1s` VM running this stack 24/7 draws only a few dollars a month from that
+  credit, so it'll last comfortably for the whole year. Check
+  **Cost Management + Billing → Cost analysis** in the portal occasionally to
+  see the burn rate.
+- **Standard Azure free account**: the first 12 months include a free `B1s`
+  Linux VM's hours — staying on that exact size keeps this at **$0/mo**;
+  anything you provision beyond it draws from the $200 initial credit or your
+  card once that's exhausted.
+- `sslip.io` + Let's Encrypt via Caddy: **$0** either way.
+- If you stop actively demoing it, `docker compose down` on the VM (or just
+  deleting the VM resource) stops any further spend immediately.
