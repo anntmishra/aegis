@@ -1,10 +1,5 @@
-// =====================================================
-// Aegis Self-Healing System - Configuration
-// =====================================================
-
 import { MonitorConfig, AnomalyThresholds } from './types';
 
-// Default anomaly detection thresholds
 export const DEFAULT_THRESHOLDS: AnomalyThresholds = {
   latencyZScore: 2.0,        // Flag if latency > mean + 2*stdDev
   errorRateThreshold: 5.0,   // Flag if error rate > 5%
@@ -13,7 +8,6 @@ export const DEFAULT_THRESHOLDS: AnomalyThresholds = {
   ewmaAlpha: 0.3,            // EWMA smoothing factor
 };
 
-// Service configuration
 export const SERVICES = {
   'service-a': {
     name: 'service-a',
@@ -41,7 +35,6 @@ export const SERVICES = {
   },
 } as const;
 
-// Monitor configuration
 export const MONITOR_CONFIG: MonitorConfig = {
   pollInterval: parseInt(process.env.POLL_INTERVAL || '5000', 10),
   services: Object.values(SERVICES).map(s => ({
@@ -52,7 +45,6 @@ export const MONITOR_CONFIG: MonitorConfig = {
   anomalyThresholds: DEFAULT_THRESHOLDS,
 };
 
-// Healing configuration
 export const HEALER_CONFIG = {
   maxRestartAttempts: 3,
   restartCooldown: 60000,      // 1 minute cooldown between restarts
@@ -61,7 +53,6 @@ export const HEALER_CONFIG = {
   confidenceThreshold: 0.6,     // Minimum confidence to take action
 };
 
-// Chaos engineering configuration
 export const CHAOS_CONFIG = {
   enabled: process.env.CHAOS_ENABLED === 'true',
   minInterval: 30000,           // Minimum 30 seconds between chaos events
@@ -74,7 +65,6 @@ export const CHAOS_CONFIG = {
   },
 };
 
-// Evaluation metrics configuration
 export const EVALUATION_CONFIG = {
   windowSize: 3600000,          // 1 hour window for calculations
   sampleInterval: 1000,         // 1 second sample interval

@@ -1,8 +1,3 @@
-// =====================================================
-// Aegis - Healing Actions
-// Executes healing actions using Docker
-// =====================================================
-
 import Docker from 'dockerode';
 import { HealingAction, HealingActionType } from '../shared/types';
 import { createLogger } from '../shared/logger';
@@ -16,9 +11,6 @@ export class HealingActions {
     this.docker = new Docker({ socketPath: '/var/run/docker.sock' });
   }
 
-  /**
-   * Execute a healing action
-   */
   async execute(action: HealingAction): Promise<{ success: boolean; message: string }> {
     const startTime = Date.now();
     
@@ -63,53 +55,43 @@ export class HealingActions {
     }
   }
 
-  /**
-   * Restart a container
-   */
   private async restartContainer(action: HealingAction): Promise<{ success: boolean; message: string }> {
     const containerName = action.parameters?.containerName as string || `aegis-${action.serviceName}`;
-    
+
     logger.info(`Restarting container: ${containerName}`);
 
     try {
       const container = this.docker.getContainer(containerName);
-      
-      // Get container info first
       const info = await container.inspect();
-      
+
       if (info.State.Running) {
-        // Graceful restart
-        await container.restart({ t: 10 }); // 10 second timeout
-        return { 
-          success: true, 
-          message: `Container ${containerName} restarted successfully` 
+        await container.restart({ t: 10 });
+        return {
+          success: true,
+          message: `Container ${containerName} restarted successfully`
         };
       } else {
-        // Start if not running
         await container.start();
-        return { 
-          success: true, 
-          message: `Container ${containerName} started successfully` 
+        return {
+          success: true,
+          message: `Container ${containerName} started successfully`
         };
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      
-      // If container doesn't exist, try to recreate it
+
       if (errorMessage.includes('No such container')) {
-        return { 
-          success: false, 
-          message: `Container ${containerName} not found` 
+        return {
+          success: false,
+          message: `Container ${containerName} not found`
         };
       }
-      
+
       throw error;
     }
   }
 
-  /**
-   * Kill a container outright (used by chaos injection, not healing)
-   */
+  // Used by chaos injection, not healing
   async killContainer(containerName: string): Promise<{ success: boolean; message: string }> {
     logger.info(`Killing container: ${containerName}`);
 
@@ -123,33 +105,21 @@ export class HealingActions {
     }
   }
 
-  /**
-   * Scale up by starting additional instances
-   * Note: This is a simplified implementation
-   */
+  // Simplified: no actual Compose scale / load balancer wiring yet, just the intent logged
   private async scaleUp(action: HealingAction): Promise<{ success: boolean; message: string }> {
     const instances = action.parameters?.instances as number || 1;
-    
+
     logger.info(`Scaling up ${action.serviceName} by ${instances} instance(s)`);
 
-    // In a real implementation, you would:
-    // 1. Use Docker Compose scale or create new containers
-    // 2. Update load balancer configuration
-    // 3. Wait for health checks to pass
-
-    // For now, we'll just log the intent
     return {
       success: true,
       message: `Scale up requested for ${action.serviceName} (+${instances} instances)`,
     };
   }
 
-  /**
-   * Scale down by stopping instances
-   */
   private async scaleDown(action: HealingAction): Promise<{ success: boolean; message: string }> {
     const instances = action.parameters?.instances as number || 1;
-    
+
     logger.info(`Scaling down ${action.serviceName} by ${instances} instance(s)`);
 
     return {
@@ -158,18 +128,10 @@ export class HealingActions {
     };
   }
 
-  /**
-   * Remove service from routing/load balancer
-   */
   private async removeFromRouting(action: HealingAction): Promise<{ success: boolean; message: string }> {
     const duration = action.parameters?.duration as number || 60000;
-    
-    logger.info(`Removing ${action.serviceName} from routing for ${duration}ms`);
 
-    // In a real implementation:
-    // 1. Update NGINX config or custom proxy
-    // 2. Reload configuration
-    // 3. Set a timer to re-add
+    logger.info(`Removing ${action.serviceName} from routing for ${duration}ms`);
 
     return {
       success: true,
@@ -177,9 +139,6 @@ export class HealingActions {
     };
   }
 
-  /**
-   * Add service back to routing
-   */
   private async addToRouting(action: HealingAction): Promise<{ success: boolean; message: string }> {
     logger.info(`Adding ${action.serviceName} back to routing`);
 
@@ -189,9 +148,6 @@ export class HealingActions {
     };
   }
 
-  /**
-   * Apply throttling/rate limiting
-   */
   private async throttle(action: HealingAction): Promise<{ success: boolean; message: string }> {
     const rateLimit = action.parameters?.rateLimit as number || 100;
     
@@ -203,16 +159,12 @@ export class HealingActions {
     };
   }
 
-  /**
-   * Get container stats
-   */
   async getContainerStats(containerName: string): Promise<any> {
     try {
       const container = this.docker.getContainer(containerName);
       const stats = await container.stats({ stream: false });
-      
-      // Calculate CPU and memory usage
-      const cpuDelta = stats.cpu_stats.cpu_usage.total_usage - 
+
+      const cpuDelta = stats.cpu_stats.cpu_usage.total_usage -
                        stats.precpu_stats.cpu_usage.total_usage;
       const systemDelta = stats.cpu_stats.system_cpu_usage - 
                          stats.precpu_stats.system_cpu_usage;
@@ -239,9 +191,6 @@ export class HealingActions {
     }
   }
 
-  /**
-   * List all aegis containers
-   */
   async listContainers(): Promise<any[]> {
     try {
       const containers = await this.docker.listContainers({

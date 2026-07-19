@@ -1,7 +1,3 @@
-// =====================================================
-// Aegis - Healer Service Entry Point
-// =====================================================
-
 import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
@@ -28,11 +24,9 @@ const VALID_ACTION_TYPES: HealingActionType[] = [
   'add_to_routing', 'update_config', 'throttle', 'no_action',
 ];
 
-// Initialize components
 const decisionEngine = new DecisionEngine();
 const healingActions = new HealingActions();
 
-// Healing statistics
 const stats = {
   totalDecisions: 0,
   successfulHealings: 0,
@@ -46,12 +40,8 @@ app.use(express.json());
 // Safe, allowlisted, rate-limited chaos injection for public callers
 app.use('/chaos', createChaosRouter(healingActions));
 
-// =====================================================
-// Healing Loop
-// =====================================================
 async function healingLoop(): Promise<void> {
   try {
-    // Fetch anomalies from monitor
     const response = await axios.get(`${MONITOR_URL}/anomalies`);
     const { anomalies } = response.data;
 
@@ -61,7 +51,6 @@ async function healingLoop(): Promise<void> {
 
     logger.info(`Processing ${anomalies.length} anomalies`);
 
-    // Group anomalies by service
     const anomaliesByService = new Map<string, Anomaly[]>();
     for (const anomaly of anomalies) {
       const existing = anomaliesByService.get(anomaly.serviceName) || [];
@@ -69,7 +58,6 @@ async function healingLoop(): Promise<void> {
       anomaliesByService.set(anomaly.serviceName, existing);
     }
 
-    // Process each service
     for (const [serviceName, serviceAnomalies] of anomaliesByService) {
       await processServiceAnomalies(serviceName, serviceAnomalies);
     }
@@ -85,14 +73,10 @@ async function healingLoop(): Promise<void> {
   }
 }
 
-/**
- * Process anomalies for a specific service
- */
 async function processServiceAnomalies(
   serviceName: string,
   anomalies: Anomaly[]
 ): Promise<void> {
-  // Make healing decision
   const decision = decisionEngine.makeDecision(serviceName, anomalies);
 
   if (!decision) {
@@ -106,17 +90,14 @@ async function processServiceAnomalies(
   // Fire-and-forget: never let evaluator being unreachable break healing.
   axios.post(`${EVALUATOR_URL}/incidents/healing-started`, { serviceName }).catch(() => {});
 
-  // Execute healing action
   const startTime = Date.now();
   const result = await healingActions.execute(decision.action);
   const executionTime = Date.now() - startTime;
 
-  // Set cooldown if action was taken
   if (decision.action.type === 'restart') {
     decisionEngine.setCooldown(serviceName);
   }
 
-  // Log the healing event
   const logEntry: HealingLogEntry = {
     id: uuidv4(),
     time: new Date().toLocaleTimeString(),
@@ -134,10 +115,8 @@ async function processServiceAnomalies(
     },
   };
 
-  // Write to healing log
   logger.logHealing(logEntry);
 
-  // Update stats
   if (result.success) {
     stats.successfulHealings++;
   } else {
@@ -145,17 +124,9 @@ async function processServiceAnomalies(
   }
 }
 
-// Start healing loop (check every 5 seconds)
 setInterval(healingLoop, 5000);
-
-// Initial run after delay (wait for monitor to start)
 setTimeout(healingLoop, 10000);
 
-// =====================================================
-// API Endpoints
-// =====================================================
-
-// Get healer status
 app.get('/status', (req, res) => {
   const uptime = Math.floor((Date.now() - stats.startTime.getTime()) / 1000);
   
@@ -180,7 +151,6 @@ app.get('/healing-log', (req, res) => {
   res.json({ count: logs.length, logs });
 });
 
-// Get decision history for a service
 app.get('/decisions/:serviceName', (req, res) => {
   const { serviceName } = req.params;
   const history = decisionEngine.getDecisionHistory(serviceName);
@@ -199,7 +169,6 @@ app.get('/decisions/:serviceName', (req, res) => {
   });
 });
 
-// Manually trigger healing for a service
 app.post('/heal/:serviceName', async (req, res) => {
   const { serviceName } = req.params;
   const { action } = req.body;
@@ -230,13 +199,11 @@ app.post('/heal/:serviceName', async (req, res) => {
   res.json(result);
 });
 
-// Get container status
 app.get('/containers', async (req, res) => {
   const containers = await healingActions.listContainers();
   res.json({ containers });
 });
 
-// Get container stats
 app.get('/containers/:name/stats', async (req, res) => {
   const { name } = req.params;
   const containerStats = await healingActions.getContainerStats(name);
@@ -249,7 +216,6 @@ app.get('/containers/:name/stats', async (req, res) => {
   res.json(containerStats);
 });
 
-// Health check
 app.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
@@ -258,9 +224,6 @@ app.get('/health', (req, res) => {
   });
 });
 
-// =====================================================
-// Start Server
-// =====================================================
 app.listen(PORT, () => {
   logger.info(`🩺 Aegis Healer running on port ${PORT}`);
   logger.info(`   Monitor URL: ${MONITOR_URL}`);

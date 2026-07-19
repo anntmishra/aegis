@@ -1,7 +1,3 @@
-// =====================================================
-// Aegis - Monitor Service Entry Point
-// =====================================================
-
 import express from 'express';
 import cors from 'cors';
 import { MetricsCollector } from './metrics-collector';
@@ -16,30 +12,23 @@ const PORT = process.env.MONITOR_PORT || 4000;
 
 app.use(cors());
 
-// Initialize components
 const metricsCollector = new MetricsCollector();
 const anomalyDetector = new AnomalyDetector(MONITOR_CONFIG.anomalyThresholds);
 
-// Store detected anomalies
 let currentAnomalies: Map<string, Anomaly[]> = new Map();
 let latestMetrics: Map<string, ServiceMetrics> = new Map();
 
 app.use(express.json());
 
-// =====================================================
-// Monitoring Loop
-// =====================================================
 async function monitoringLoop(): Promise<void> {
   logger.info('Starting monitoring cycle...');
-  
+
   try {
-    // Collect metrics from all services
     const metrics = await metricsCollector.collectAllMetrics();
     latestMetrics = metrics;
 
-    // Detect anomalies for each service
     const allAnomalies = new Map<string, Anomaly[]>();
-    
+
     for (const [serviceName, serviceMetrics] of metrics) {
       const anomalies = anomalyDetector.detectAnomalies(serviceMetrics);
       if (anomalies.length > 0) {
@@ -49,7 +38,6 @@ async function monitoringLoop(): Promise<void> {
 
     currentAnomalies = allAnomalies;
 
-    // Log summary
     const totalAnomalies = Array.from(allAnomalies.values()).flat().length;
     if (totalAnomalies > 0) {
       logger.warn(`Monitoring cycle complete: ${totalAnomalies} anomalies detected`);
@@ -64,17 +52,9 @@ async function monitoringLoop(): Promise<void> {
   }
 }
 
-// Start monitoring loop
 setInterval(monitoringLoop, MONITOR_CONFIG.pollInterval);
-
-// Initial run
 monitoringLoop();
 
-// =====================================================
-// API Endpoints
-// =====================================================
-
-// Get current status of all services
 app.get('/status', (req, res) => {
   const status: Record<string, any> = {};
   
@@ -104,7 +84,6 @@ app.get('/status', (req, res) => {
   });
 });
 
-// Get anomalies
 app.get('/anomalies', (req, res) => {
   const anomalyList: any[] = [];
   
@@ -124,7 +103,6 @@ app.get('/anomalies', (req, res) => {
   });
 });
 
-// Get metrics for a specific service
 app.get('/metrics/:serviceName', (req, res) => {
   const { serviceName } = req.params;
   const metrics = latestMetrics.get(serviceName);
@@ -147,7 +125,6 @@ app.get('/metrics/:serviceName', (req, res) => {
   });
 });
 
-// Get baselines for a service
 app.get('/baselines/:serviceName', (req, res) => {
   const { serviceName } = req.params;
   const baselines = anomalyDetector.getServiceBaselines(serviceName);
@@ -170,7 +147,6 @@ app.get('/baselines/:serviceName', (req, res) => {
   res.json(result);
 });
 
-// Health check
 app.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
@@ -179,9 +155,6 @@ app.get('/health', (req, res) => {
   });
 });
 
-// =====================================================
-// Start Server
-// =====================================================
 app.listen(PORT, () => {
   logger.info(`🔍 Aegis Monitor running on port ${PORT}`);
   logger.info(`   Poll interval: ${MONITOR_CONFIG.pollInterval}ms`);

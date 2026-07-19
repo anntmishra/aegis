@@ -1,7 +1,3 @@
-// =====================================================
-// Aegis Self-Healing System - Logger Utility
-// =====================================================
-
 import * as fs from 'fs';
 import * as path from 'path';
 import { HealingLogEntry } from './types';
@@ -70,14 +66,13 @@ class Logger {
     // Console output with colors
     const coloredLevel = this.colorize(level, levelStr);
     const consoleOutput = `[${timestamp}] ${coloredLevel} [${this.component}] ${message}`;
-    
+
     if (data) {
       console.log(consoleOutput, data);
     } else {
       console.log(consoleOutput);
     }
 
-    // File output (JSON)
     this.writeToFile(logMessage);
   }
 
@@ -108,7 +103,6 @@ class Logger {
     this.log('error', message, data);
   }
 
-  // Read the most recent healing log entries, newest first
   getRecentHealingLogs(limit: number): HealingLogEntry[] {
     const healingLogFile = path.join(this.logDir, 'healing-log.json');
 
@@ -125,11 +119,9 @@ class Logger {
     }
   }
 
-  // Special method for healing logs (explainability)
   logHealing(entry: HealingLogEntry): void {
     const healingLogFile = path.join(this.logDir, 'healing-log.json');
-    
-    // Read existing logs
+
     let logs: HealingLogEntry[] = [];
     if (fs.existsSync(healingLogFile)) {
       try {
@@ -140,13 +132,10 @@ class Logger {
       }
     }
 
-    // Append new entry
     logs.push(entry);
 
-    // Write back
     fs.writeFileSync(healingLogFile, JSON.stringify(logs, null, 2));
 
-    // Also log to console
     this.info(`🩺 Healing Action: ${entry.action} on ${entry.service}`, {
       symptoms: entry.symptoms,
       rootCause: entry.root_cause,
@@ -155,10 +144,8 @@ class Logger {
   }
 }
 
-// Factory function to create loggers
 export function createLogger(component: string): Logger {
   return new Logger(component);
 }
 
-// Default export for convenience
 export default Logger;

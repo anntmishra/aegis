@@ -1,8 +1,3 @@
-// =====================================================
-// Aegis - Decision Engine
-// Rule-based healing decisions with explainability
-// =====================================================
-
 import { v4 as uuidv4 } from 'uuid';
 import {
   Anomaly,
@@ -17,7 +12,6 @@ import { createLogger } from '../shared/logger';
 
 const logger = createLogger('DecisionEngine');
 
-// Rule definitions
 interface HealingRule {
   name: string;
   conditions: {
@@ -40,12 +34,9 @@ export class DecisionEngine {
     this.rules = this.initializeRules();
   }
 
-  /**
-   * Initialize healing rules
-   */
   private initializeRules(): HealingRule[] {
     return [
-      // Critical: Service is completely down
+      // Critical: service is completely down
       {
         name: 'service_down_restart',
         conditions: {
@@ -57,7 +48,7 @@ export class DecisionEngine {
         priority: 1,
       },
 
-      // High: Memory exhaustion
+      // High: memory exhaustion
       {
         name: 'memory_exhaustion_restart',
         conditions: {
@@ -70,7 +61,7 @@ export class DecisionEngine {
         priority: 2,
       },
 
-      // High: Combined latency and errors
+      // High: combined latency and errors
       {
         name: 'degraded_performance_restart',
         conditions: {
@@ -83,7 +74,7 @@ export class DecisionEngine {
         priority: 3,
       },
 
-      // Medium: High error rate alone
+      // Medium: high error rate alone
       {
         name: 'error_burst_routing',
         conditions: {
@@ -96,7 +87,7 @@ export class DecisionEngine {
         priority: 4,
       },
 
-      // Medium: CPU overload - scale up
+      // Medium: CPU overload, scale up
       {
         name: 'cpu_overload_scale',
         conditions: {
@@ -109,7 +100,7 @@ export class DecisionEngine {
         priority: 5,
       },
 
-      // Low: Latency spike alone
+      // Low: latency spike alone
       {
         name: 'latency_spike_throttle',
         conditions: {
@@ -124,9 +115,6 @@ export class DecisionEngine {
     ];
   }
 
-  /**
-   * Make a healing decision based on anomalies
-   */
   makeDecision(serviceName: string, anomalies: Anomaly[]): HealingDecision | null {
     if (anomalies.length === 0) {
       return null;
@@ -134,13 +122,11 @@ export class DecisionEngine {
 
     logger.info(`Analyzing ${anomalies.length} anomalies for ${serviceName}`);
 
-    // Check cooldown
     if (this.isOnCooldown(serviceName)) {
       logger.info(`Service ${serviceName} is on cooldown, skipping healing`);
       return null;
     }
 
-    // Find matching rule
     const matchedRule = this.findMatchingRule(anomalies);
 
     if (!matchedRule) {
@@ -148,16 +134,13 @@ export class DecisionEngine {
       return null;
     }
 
-    // Check confidence threshold
     if (matchedRule.confidence < HEALER_CONFIG.confidenceThreshold) {
       logger.debug(`Rule confidence ${matchedRule.confidence} below threshold`);
       return null;
     }
 
-    // Build the decision
     const decision = this.buildDecision(serviceName, anomalies, matchedRule);
 
-    // Store decision
     this.storeDecision(serviceName, decision);
 
     logger.info(`Decision made for ${serviceName}: ${decision.action.type}`, {
@@ -168,32 +151,25 @@ export class DecisionEngine {
     return decision;
   }
 
-  /**
-   * Find the best matching rule for given anomalies
-   */
   private findMatchingRule(anomalies: Anomaly[]): HealingRule | null {
     const anomalyTypes = anomalies.map(a => a.type);
     const maxSeverity = this.getMaxSeverity(anomalies);
 
-    // Sort rules by priority
     const sortedRules = [...this.rules].sort((a, b) => a.priority - b.priority);
 
     for (const rule of sortedRules) {
-      // Check if all required anomaly types are present
       const hasRequiredTypes = rule.conditions.anomalyTypes.every(
         type => anomalyTypes.includes(type)
       );
 
       if (!hasRequiredTypes) continue;
 
-      // Check minimum severity if specified
       if (rule.conditions.minSeverity) {
         if (!this.meetsMinSeverity(maxSeverity, rule.conditions.minSeverity)) {
           continue;
         }
       }
 
-      // Check minimum count if specified
       if (rule.conditions.minCount) {
         const matchingCount = anomalies.filter(
           a => rule.conditions.anomalyTypes.includes(a.type)
@@ -209,9 +185,6 @@ export class DecisionEngine {
     return null;
   }
 
-  /**
-   * Build a healing decision
-   */
   private buildDecision(
     serviceName: string,
     anomalies: Anomaly[],
@@ -232,9 +205,6 @@ export class DecisionEngine {
     };
   }
 
-  /**
-   * Analyze root cause
-   */
   private analyzeRootCause(anomalies: Anomaly[], rule: HealingRule): RootCause {
     const contributing: string[] = [];
 
@@ -265,9 +235,6 @@ export class DecisionEngine {
     };
   }
 
-  /**
-   * Build healing action
-   */
   private buildAction(serviceName: string, rule: HealingRule): HealingAction {
     return {
       type: rule.action,
@@ -276,9 +243,6 @@ export class DecisionEngine {
     };
   }
 
-  /**
-   * Get action-specific parameters
-   */
   private getActionParameters(
     actionType: HealingActionType,
     serviceName: string
@@ -299,9 +263,6 @@ export class DecisionEngine {
     }
   }
 
-  /**
-   * Build human-readable reasoning
-   */
   private buildReasoning(
     anomalies: Anomaly[],
     rule: HealingRule,
@@ -317,9 +278,6 @@ export class DecisionEngine {
       `Taking action: ${rule.action}.`;
   }
 
-  /**
-   * Get maximum severity from anomalies
-   */
   private getMaxSeverity(anomalies: Anomaly[]): string {
     const severityOrder = ['low', 'medium', 'high', 'critical'];
     let maxIndex = 0;
@@ -332,17 +290,11 @@ export class DecisionEngine {
     return severityOrder[maxIndex];
   }
 
-  /**
-   * Check if severity meets minimum
-   */
   private meetsMinSeverity(actual: string, minimum: string): boolean {
     const severityOrder = ['low', 'medium', 'high', 'critical'];
     return severityOrder.indexOf(actual) >= severityOrder.indexOf(minimum);
   }
 
-  /**
-   * Check if service is on cooldown
-   */
   private isOnCooldown(serviceName: string): boolean {
     const lastRestart = this.restartCooldowns.get(serviceName);
     if (!lastRestart) return false;
@@ -351,21 +303,14 @@ export class DecisionEngine {
     return elapsed < HEALER_CONFIG.restartCooldown;
   }
 
-  /**
-   * Set cooldown for a service
-   */
   setCooldown(serviceName: string): void {
     this.restartCooldowns.set(serviceName, new Date());
   }
 
-  /**
-   * Store decision for history
-   */
   private storeDecision(serviceName: string, decision: HealingDecision): void {
     const history = this.recentDecisions.get(serviceName) || [];
     history.push(decision);
 
-    // Keep only last 100 decisions
     if (history.length > 100) {
       history.shift();
     }
@@ -373,9 +318,6 @@ export class DecisionEngine {
     this.recentDecisions.set(serviceName, history);
   }
 
-  /**
-   * Get decision history for a service
-   */
   getDecisionHistory(serviceName: string): HealingDecision[] {
     return this.recentDecisions.get(serviceName) || [];
   }

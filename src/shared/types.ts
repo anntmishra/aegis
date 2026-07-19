@@ -1,11 +1,5 @@
-// =====================================================
-// Aegis Self-Healing System - Shared Types
-// =====================================================
-
-// Service Health Status
 export type HealthStatus = 'healthy' | 'degraded' | 'unhealthy' | 'unknown';
 
-// Service Information
 export interface ServiceInfo {
   name: string;
   containerId: string;
@@ -15,7 +9,6 @@ export interface ServiceInfo {
   lastChecked: Date;
 }
 
-// Metrics collected from services
 export interface ServiceMetrics {
   serviceName: string;
   timestamp: Date;
@@ -46,8 +39,7 @@ export interface CpuMetrics {
   percentage: number;
 }
 
-// Anomaly Types
-export type AnomalyType = 
+export type AnomalyType =
   | 'latency_spike'
   | 'error_burst'
   | 'memory_exhaustion'
@@ -70,7 +62,6 @@ export interface Anomaly {
   description: string;
 }
 
-// Baseline Statistics for Anomaly Detection
 export interface BaselineStats {
   serviceName: string;
   metric: string;
@@ -81,8 +72,7 @@ export interface BaselineStats {
   lastUpdated: Date;
 }
 
-// Healing Actions
-export type HealingActionType = 
+export type HealingActionType =
   | 'restart'
   | 'scale_up'
   | 'scale_down'
@@ -98,14 +88,12 @@ export interface HealingAction {
   parameters?: Record<string, unknown>;
 }
 
-// Root Cause Analysis
 export interface RootCause {
   primary: string;
   contributing: string[];
   confidence: number;    // 0-1
 }
 
-// Healing Decision
 export interface HealingDecision {
   id: string;
   timestamp: Date;
@@ -117,7 +105,6 @@ export interface HealingDecision {
   reasoning: string;
 }
 
-// Explainability Log Entry
 export interface HealingLogEntry {
   id: string;
   time: string;
@@ -135,7 +122,6 @@ export interface HealingLogEntry {
   };
 }
 
-// Evaluation Metrics
 export interface EvaluationMetrics {
   mttd: number;           // Mean Time To Detect (seconds)
   mttr: number;           // Mean Time To Recover (seconds)
@@ -145,8 +131,7 @@ export interface EvaluationMetrics {
   falsePositives: number;
 }
 
-// Chaos Engineering
-export type ChaosType = 
+export type ChaosType =
   | 'kill_container'
   | 'memory_throttle'
   | 'cpu_throttle'
@@ -165,7 +150,6 @@ export interface ChaosExperiment {
   status: 'pending' | 'running' | 'completed' | 'failed';
 }
 
-// Configuration
 export interface MonitorConfig {
   pollInterval: number;      // Milliseconds
   services: ServiceEndpoint[];
@@ -186,7 +170,6 @@ export interface AnomalyThresholds {
   ewmaAlpha: number;           // EWMA smoothing factor (0-1)
 }
 
-// API Response Types
 export interface HealthCheckResponse {
   status: HealthStatus;
   serviceName: string;
@@ -206,7 +189,6 @@ export interface MetricsResponse {
   };
 }
 
-// Event Types for Internal Communication
 export interface SystemEvent {
   type: 'anomaly_detected' | 'healing_started' | 'healing_completed' | 'service_status_changed';
   timestamp: Date;
