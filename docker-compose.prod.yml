@@ -1,0 +1,37 @@
+# Override for the hosted public demo. Use together with the base file:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+#
+# Requires a .env file (see deploy/runbook.md) defining:
+#   DOMAIN=aegis.<your-vm-ip>.sslip.io
+#   ADMIN_TOKEN=<a long random string>
+
+services:
+  healer:
+    environment:
+      PUBLIC_DEMO: "true"
+      ADMIN_TOKEN: ${ADMIN_TOKEN}
+
+  caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile.caddy
+    container_name: aegis-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN}
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - aegis-network
+    depends_on:
+      - monitor
+      - healer
+      - evaluator
+
+volumes:
+  caddy_data:
+  caddy_config:

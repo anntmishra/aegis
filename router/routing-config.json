@@ -1,0 +1,64 @@
+{
+  "services": {
+    "service-a": {
+      "instances": [
+        {
+          "id": "service-a-1",
+          "host": "service-a",
+          "port": 3000,
+          "weight": 100,
+          "active": true
+        }
+      ],
+      "healthCheck": {
+        "path": "/health",
+        "interval": 10000,
+        "timeout": 5000
+      },
+      "loadBalancing": "round-robin"
+    },
+    "service-b": {
+      "instances": [
+        {
+          "id": "service-b-1",
+          "host": "service-b",
+          "port": 3000,
+          "weight": 100,
+          "active": true
+        }
+      ],
+      "healthCheck": {
+        "path": "/health",
+        "interval": 10000,
+        "timeout": 5000
+      },
+      "loadBalancing": "round-robin"
+    },
+    "service-c": {
+      "instances": [
+        {
+          "id": "service-c-1",
+          "host": "service-c",
+          "port": 3000,
+          "weight": 100,
+          "active": true
+        }
+      ],
+      "healthCheck": {
+        "path": "/health",
+        "interval": 10000,
+        "timeout": 5000
+      },
+      "loadBalancing": "round-robin"
+    }
+  },
+  "defaults": {
+    "timeout": 30000,
+    "retries": 3,
+    "circuitBreaker": {
+      "enabled": true,
+      "threshold": 5,
+      "resetTimeout": 30000
+    }
+  }
+}

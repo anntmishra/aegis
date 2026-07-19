@@ -1,0 +1,128 @@
+services:
+  # Microservice A - User Service
+  service-a:
+    build:
+      context: ./services/service-a
+      dockerfile: Dockerfile
+    container_name: aegis-service-a
+    ports:
+      - "3001:3000"
+    environment:
+      - SERVICE_NAME=service-a
+      - PORT=3000
+    networks:
+      - aegis-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Microservice B - Order Service
+  service-b:
+    build:
+      context: ./services/service-b
+      dockerfile: Dockerfile
+    container_name: aegis-service-b
+    ports:
+      - "3002:3000"
+    environment:
+      - SERVICE_NAME=service-b
+      - PORT=3000
+    networks:
+      - aegis-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Microservice C - Inventory Service
+  service-c:
+    build:
+      context: ./services/service-c
+      dockerfile: Dockerfile
+    container_name: aegis-service-c
+    ports:
+      - "3003:3000"
+    environment:
+      - SERVICE_NAME=service-c
+      - PORT=3000
+    networks:
+      - aegis-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Monitor Service
+  monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile.monitor
+    container_name: aegis-monitor
+    ports:
+      - "4000:4000"
+    environment:
+      - MONITOR_PORT=4000
+      - POLL_INTERVAL=5000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./logs:/app/logs
+    networks:
+      - aegis-network
+    depends_on:
+      - service-a
+      - service-b
+      - service-c
+
+  # Healer Service
+  healer:
+    build:
+      context: .
+      dockerfile: Dockerfile.healer
+    container_name: aegis-healer
+    ports:
+      - "4001:4001"
+    environment:
+      - HEALER_PORT=4001
+      - MONITOR_URL=http://monitor:4000
+      - EVALUATOR_URL=http://evaluator:4002
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./logs:/app/logs
+    networks:
+      - aegis-network
+    depends_on:
+      - monitor
+
+  # Evaluator Service
+  evaluator:
+    build:
+      context: .
+      dockerfile: Dockerfile.evaluator
+    container_name: aegis-evaluator
+    ports:
+      - "4002:4002"
+    environment:
+      - EVALUATOR_PORT=4002
+      - MONITOR_URL=http://monitor:4000
+      - HEALER_URL=http://healer:4001
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - aegis-network
+    depends_on:
+      - monitor
+      - healer
+
+networks:
+  aegis-network:
+    driver: bridge
+
+volumes:
+  logs:

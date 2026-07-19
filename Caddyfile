@@ -1,0 +1,21 @@
+{$DOMAIN} {
+	route {
+		handle_path /api/monitor/* {
+			reverse_proxy monitor:4000
+		}
+
+		handle_path /api/healer/* {
+			reverse_proxy healer:4001
+		}
+
+		handle_path /api/evaluator/* {
+			reverse_proxy evaluator:4002
+		}
+
+		handle {
+			root * /srv
+			file_server
+			try_files {path} /index.html
+		}
+	}
+}
