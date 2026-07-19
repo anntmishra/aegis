@@ -9,7 +9,7 @@ Aegis runs three microservices, watches them with statistical anomaly detection 
 ![Docker Compose](https://img.shields.io/badge/Docker%20Compose-000000?logo=docker&logoColor=white)
 ![React](https://img.shields.io/badge/React-000000?logo=react&logoColor=white)
 
-**Live demo:** _add your `https://aegis.<vm-ip>.sslip.io` URL here once deployed — see [Hosting a public demo](#hosting-a-public-demo)._
+
 
 <p align="center">
   <img src="docs/screenshots/dashboard-dark.png" alt="Aegis dashboard, dark mode, mid-incident" width="100%">

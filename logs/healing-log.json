@@ -1,1 +1,2486 @@
-[]
+[
+  {
+    "id": "0ef0400a-80cc-499c-ba1c-1e8da1af4970",
+    "time": "6:55:21 PM",
+    "service": "service-a",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "7402e405-894b-45a6-a872-0ed181e4d99c",
+          "serviceName": "service-a",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T18:55:16.959Z",
+          "value": 94.1662148821854,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 94.17% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "ca6327b5-03c6-487b-b7ac-649c2068f29f",
+        "timestamp": "2026-07-19T18:55:20.856Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "7402e405-894b-45a6-a872-0ed181e4d99c",
+            "serviceName": "service-a",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T18:55:16.959Z",
+            "value": 94.1662148821854,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 94.17% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-a",
+          "parameters": {
+            "containerName": "aegis-service-a"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 94.17% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 893,
+      "success": true
+    }
+  },
+  {
+    "id": "6ce2d9f1-2cf4-45e9-9f86-5242a91e08a0",
+    "time": "6:55:22 PM",
+    "service": "service-c",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "b503df17-f98f-4712-8db2-405ef9e0ccd8",
+          "serviceName": "service-c",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T18:55:16.960Z",
+          "value": 94.8707963814086,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 94.87% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "85b99a6f-2d8b-4b5b-bc8a-b6e8b356e467",
+        "timestamp": "2026-07-19T18:55:21.760Z",
+        "serviceName": "service-c",
+        "symptoms": [
+          {
+            "id": "b503df17-f98f-4712-8db2-405ef9e0ccd8",
+            "serviceName": "service-c",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T18:55:16.960Z",
+            "value": 94.8707963814086,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 94.87% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-c",
+          "parameters": {
+            "containerName": "aegis-service-c"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 94.87% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 820,
+      "success": true
+    }
+  },
+  {
+    "id": "a2bb3857-e63c-4910-a0b5-2c11c7ba31e7",
+    "time": "6:55:45 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "75968f7e-cca7-4c01-9ccc-5a5299e6aede",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "medium",
+          "timestamp": "2026-07-19T18:55:42.013Z",
+          "value": 6,
+          "threshold": 5.841640786499874,
+          "baseline": 4.500000000000001,
+          "description": "Latency spike detected: 6.00ms (baseline: 4.50ms, Z-score: 2.24)",
+          "symptoms": [
+            "latency spike"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "de95f65d-cd24-4356-8a0d-633f264a0537",
+        "timestamp": "2026-07-19T18:55:45.887Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "75968f7e-cca7-4c01-9ccc-5a5299e6aede",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "medium",
+            "timestamp": "2026-07-19T18:55:42.013Z",
+            "value": 6,
+            "threshold": 5.841640786499874,
+            "baseline": 4.500000000000001,
+            "description": "Latency spike detected: 6.00ms (baseline: 4.50ms, Z-score: 2.24)",
+            "symptoms": [
+              "latency spike"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-b",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 6.00ms (baseline: 4.50ms, Z-score: 2.24). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 2,
+      "success": true
+    }
+  },
+  {
+    "id": "53157c2e-0463-4a56-8fa9-af861d0f2a77",
+    "time": "6:57:11 PM",
+    "service": "service-c",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "1e59607a-02eb-4aeb-8a15-3ba682ba53a3",
+          "serviceName": "service-c",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T18:57:07.206Z",
+          "value": 92.40660244360902,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.41% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "63a709bd-8651-47fc-ad22-829d2f555018",
+        "timestamp": "2026-07-19T18:57:11.087Z",
+        "serviceName": "service-c",
+        "symptoms": [
+          {
+            "id": "1e59607a-02eb-4aeb-8a15-3ba682ba53a3",
+            "serviceName": "service-c",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T18:57:07.206Z",
+            "value": 92.40660244360902,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.41% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-c",
+          "parameters": {
+            "containerName": "aegis-service-c"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.41% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 874,
+      "success": true
+    }
+  },
+  {
+    "id": "a68eae85-5678-4e30-a8ac-bd4e1be1de43",
+    "time": "6:57:21 PM",
+    "service": "service-a",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "879791ac-8d1c-4c40-88e9-b90e96dad1b7",
+          "serviceName": "service-a",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T18:57:17.251Z",
+          "value": 93.351640820802,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 93.35% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "e7636341-ea21-4af2-8d9b-b63d65597fe6",
+        "timestamp": "2026-07-19T18:57:21.099Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "879791ac-8d1c-4c40-88e9-b90e96dad1b7",
+            "serviceName": "service-a",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T18:57:17.251Z",
+            "value": 93.351640820802,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 93.35% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-a",
+          "parameters": {
+            "containerName": "aegis-service-a"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 93.35% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 853,
+      "success": true
+    }
+  },
+  {
+    "id": "6a5a061e-d204-47d4-b9f1-3a37aaf460b6",
+    "time": "6:59:02 PM",
+    "service": "service-b",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "3244d2f2-c9cb-47f3-aa0d-4922e7524938",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T18:58:57.426Z",
+          "value": 92.01932701365992,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.02% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "74b11227-b3c6-463f-8634-3f6e13723c3a",
+        "timestamp": "2026-07-19T18:59:01.389Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "3244d2f2-c9cb-47f3-aa0d-4922e7524938",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T18:58:57.426Z",
+            "value": 92.01932701365992,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.02% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-b",
+          "parameters": {
+            "containerName": "aegis-service-b"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.02% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 846,
+      "success": true
+    }
+  },
+  {
+    "id": "754ef6c7-1912-4a3c-8558-086a4d00daa1",
+    "time": "7:00:27 PM",
+    "service": "service-c",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "99e64d3c-29a2-402b-85b8-747e81f36290",
+          "serviceName": "service-c",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:00:22.588Z",
+          "value": 92.5745370642958,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.57% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "3fcadbac-29cd-4837-b437-5e73a189560a",
+        "timestamp": "2026-07-19T19:00:26.525Z",
+        "serviceName": "service-c",
+        "symptoms": [
+          {
+            "id": "99e64d3c-29a2-402b-85b8-747e81f36290",
+            "serviceName": "service-c",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:00:22.588Z",
+            "value": 92.5745370642958,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.57% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-c",
+          "parameters": {
+            "containerName": "aegis-service-c"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.57% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 977,
+      "success": true
+    }
+  },
+  {
+    "id": "b1f73b64-23dc-4669-a6c0-06dc39fc5874",
+    "time": "7:00:41 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "96dd3c16-85f4-4e2e-919a-70faeccd3da0",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:00:37.641Z",
+          "value": 7,
+          "threshold": 6.525049060053114,
+          "baseline": 4.492753623188405,
+          "description": "Latency spike detected: 7.00ms (baseline: 4.49ms, Z-score: 2.47)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "99068be5-7e69-4077-8c98-f58ff2e5e495",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:00:37.641Z",
+          "value": 85.44063410636231,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 85.44% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "853cd1a7-f833-4d34-9396-fc1a54ecc024",
+        "timestamp": "2026-07-19T19:00:41.789Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "96dd3c16-85f4-4e2e-919a-70faeccd3da0",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:00:37.641Z",
+            "value": 7,
+            "threshold": 6.525049060053114,
+            "baseline": 4.492753623188405,
+            "description": "Latency spike detected: 7.00ms (baseline: 4.49ms, Z-score: 2.47)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "99068be5-7e69-4077-8c98-f58ff2e5e495",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:00:37.641Z",
+            "value": 85.44063410636231,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 85.44% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-b",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 7.00ms (baseline: 4.49ms, Z-score: 2.47); Memory usage critical: 85.44% (threshold: 85%). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 2,
+      "success": true
+    }
+  },
+  {
+    "id": "b795f388-090b-4be9-bbf7-0020819d7cda",
+    "time": "7:00:42 PM",
+    "service": "service-a",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "61363166-a9e6-499a-b69c-f7bcec78927d",
+          "serviceName": "service-a",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:00:37.642Z",
+          "value": 92.21408752355158,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.21% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "6edca1d0-06cc-4c67-9f5a-e84ff101f1e6",
+        "timestamp": "2026-07-19T19:00:41.799Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "61363166-a9e6-499a-b69c-f7bcec78927d",
+            "serviceName": "service-a",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:00:37.642Z",
+            "value": 92.21408752355158,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.21% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-a",
+          "parameters": {
+            "containerName": "aegis-service-a"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.21% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 898,
+      "success": true
+    }
+  },
+  {
+    "id": "249d4bde-d4e4-461b-9329-c69011e6c7c4",
+    "time": "7:00:46 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "e6c3651e-bef6-4d6a-9b0f-3385d5b3c35f",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:00:42.806Z",
+          "value": 7,
+          "threshold": 6.632212586765711,
+          "baseline": 4.5285714285714285,
+          "description": "Latency spike detected: 7.00ms (baseline: 4.53ms, Z-score: 2.35)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "9efa9e7e-3c78-433a-9826-71ba6984f8fb",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:00:42.806Z",
+          "value": 86.3212003703254,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 86.32% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "25c09d1a-5bdd-4721-a76c-99802edbd596",
+        "timestamp": "2026-07-19T19:00:46.789Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "e6c3651e-bef6-4d6a-9b0f-3385d5b3c35f",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:00:42.806Z",
+            "value": 7,
+            "threshold": 6.632212586765711,
+            "baseline": 4.5285714285714285,
+            "description": "Latency spike detected: 7.00ms (baseline: 4.53ms, Z-score: 2.35)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "9efa9e7e-3c78-433a-9826-71ba6984f8fb",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:00:42.806Z",
+            "value": 86.3212003703254,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 86.32% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-b",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 7.00ms (baseline: 4.53ms, Z-score: 2.35); Memory usage critical: 86.32% (threshold: 85%). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 1,
+      "success": true
+    }
+  },
+  {
+    "id": "52cd83b5-a096-45fe-bd02-549ebb1148c2",
+    "time": "7:00:51 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "c85a25df-a777-4657-9118-78dea6ecc519",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:00:47.673Z",
+          "value": 7,
+          "threshold": 6.731845549737209,
+          "baseline": 4.563380281690141,
+          "description": "Latency spike detected: 7.00ms (baseline: 4.56ms, Z-score: 2.25)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "1dc4ae0a-87c9-4734-a53d-12eb35adfd22",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:00:47.673Z",
+          "value": 87.69047474502185,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 87.69% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "5c2efdf8-40c3-45b5-9cc5-8195ff932a23",
+        "timestamp": "2026-07-19T19:00:51.797Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "c85a25df-a777-4657-9118-78dea6ecc519",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:00:47.673Z",
+            "value": 7,
+            "threshold": 6.731845549737209,
+            "baseline": 4.563380281690141,
+            "description": "Latency spike detected: 7.00ms (baseline: 4.56ms, Z-score: 2.25)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "1dc4ae0a-87c9-4734-a53d-12eb35adfd22",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:00:47.673Z",
+            "value": 87.69047474502185,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 87.69% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-b",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 7.00ms (baseline: 4.56ms, Z-score: 2.25); Memory usage critical: 87.69% (threshold: 85%). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 1,
+      "success": true
+    }
+  },
+  {
+    "id": "b88c8c6a-509b-42dd-a7ee-71a702da4e4e",
+    "time": "7:00:56 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "31e8f74a-f91d-4457-9cd0-e908316e24ee",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:00:52.685Z",
+          "value": 7,
+          "threshold": 6.824819887426757,
+          "baseline": 4.597222222222222,
+          "description": "Latency spike detected: 7.00ms (baseline: 4.60ms, Z-score: 2.16)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "2bf2dc40-5b73-410a-a424-47614d975883",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:00:52.685Z",
+          "value": 88.57142044074794,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 88.57% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "8cf28ab0-7337-4b63-b936-a4d6727c789c",
+        "timestamp": "2026-07-19T19:00:56.815Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "31e8f74a-f91d-4457-9cd0-e908316e24ee",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:00:52.685Z",
+            "value": 7,
+            "threshold": 6.824819887426757,
+            "baseline": 4.597222222222222,
+            "description": "Latency spike detected: 7.00ms (baseline: 4.60ms, Z-score: 2.16)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "2bf2dc40-5b73-410a-a424-47614d975883",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:00:52.685Z",
+            "value": 88.57142044074794,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 88.57% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-b",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 7.00ms (baseline: 4.60ms, Z-score: 2.16); Memory usage critical: 88.57% (threshold: 85%). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 3,
+      "success": true
+    }
+  },
+  {
+    "id": "a29d9ddd-7c14-4f5f-829c-02aaeed4d8f4",
+    "time": "7:01:01 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "91a18437-936f-45b0-9672-9eb0feb2e032",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:00:57.706Z",
+          "value": 7,
+          "threshold": 6.911853459030906,
+          "baseline": 4.63013698630137,
+          "description": "Latency spike detected: 7.00ms (baseline: 4.63ms, Z-score: 2.08)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "57a1415e-27fa-4f75-b181-4759e72bc558",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:00:57.706Z",
+          "value": 89.94373026954833,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 89.94% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "8de41737-2811-4fdc-a639-22b0abea207b",
+        "timestamp": "2026-07-19T19:01:01.841Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "91a18437-936f-45b0-9672-9eb0feb2e032",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:00:57.706Z",
+            "value": 7,
+            "threshold": 6.911853459030906,
+            "baseline": 4.63013698630137,
+            "description": "Latency spike detected: 7.00ms (baseline: 4.63ms, Z-score: 2.08)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "57a1415e-27fa-4f75-b181-4759e72bc558",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:00:57.706Z",
+            "value": 89.94373026954833,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 89.94% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-b",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 7.00ms (baseline: 4.63ms, Z-score: 2.08); Memory usage critical: 89.94% (threshold: 85%). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 4,
+      "success": true
+    }
+  },
+  {
+    "id": "e7e864cb-3d55-4e2a-b42d-4925280b32c4",
+    "time": "7:01:21 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "8f5bb58d-3bef-4ecd-be18-541aeed85cd7",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:01:17.774Z",
+          "value": 7,
+          "threshold": 6.996056756492591,
+          "baseline": 4.688311688311689,
+          "description": "Latency spike detected: 7.00ms (baseline: 4.69ms, Z-score: 2.00)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "1235938b-554a-421d-a928-53e77d1ebdc2",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:01:17.774Z",
+          "value": 87.43303029383196,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 87.43% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "b456ca41-ac4e-4824-b036-a481dcf98a21",
+        "timestamp": "2026-07-19T19:01:21.877Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "8f5bb58d-3bef-4ecd-be18-541aeed85cd7",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:01:17.774Z",
+            "value": 7,
+            "threshold": 6.996056756492591,
+            "baseline": 4.688311688311689,
+            "description": "Latency spike detected: 7.00ms (baseline: 4.69ms, Z-score: 2.00)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "1235938b-554a-421d-a928-53e77d1ebdc2",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:01:17.774Z",
+            "value": 87.43303029383196,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 87.43% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-b",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 7.00ms (baseline: 4.69ms, Z-score: 2.00); Memory usage critical: 87.43% (threshold: 85%). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 2,
+      "success": true
+    }
+  },
+  {
+    "id": "95788158-ebb9-49db-b48e-a77d79e92694",
+    "time": "7:02:12 PM",
+    "service": "service-b",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "8c965861-0935-437b-8ff0-9ab4663bd805",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:02:07.906Z",
+          "value": 93.10069739558038,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 93.10% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "b8c3e71a-78c0-4ada-87ed-74a16a9f7696",
+        "timestamp": "2026-07-19T19:02:11.992Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "8c965861-0935-437b-8ff0-9ab4663bd805",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:02:07.906Z",
+            "value": 93.10069739558038,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 93.10% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-b",
+          "parameters": {
+            "containerName": "aegis-service-b"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 93.10% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 832,
+      "success": true
+    }
+  },
+  {
+    "id": "d3c323f6-ed10-4ce5-a5a4-8533275a1d79",
+    "time": "7:03:07 PM",
+    "service": "service-c",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "58b0fe6c-fec9-428b-96ed-9f1be6dfb4aa",
+          "serviceName": "service-c",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:03:03.051Z",
+          "value": 92.26661152258377,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.27% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "8423e8ee-f531-4110-861f-69eca409ced2",
+        "timestamp": "2026-07-19T19:03:07.125Z",
+        "serviceName": "service-c",
+        "symptoms": [
+          {
+            "id": "58b0fe6c-fec9-428b-96ed-9f1be6dfb4aa",
+            "serviceName": "service-c",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:03:03.051Z",
+            "value": 92.26661152258377,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.27% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-c",
+          "parameters": {
+            "containerName": "aegis-service-c"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.27% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 824,
+      "success": true
+    }
+  },
+  {
+    "id": "36c69f7d-4302-4004-96f0-fe945de649ee",
+    "time": "7:03:27 PM",
+    "service": "service-a",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "34e50df6-7260-412b-b3bc-4fea84c39e9a",
+          "serviceName": "service-a",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:03:23.070Z",
+          "value": 92.84884956289461,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.85% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "cddba668-439d-4c31-bec9-1e1e6f330d3a",
+        "timestamp": "2026-07-19T19:03:27.155Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "34e50df6-7260-412b-b3bc-4fea84c39e9a",
+            "serviceName": "service-a",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:03:23.070Z",
+            "value": 92.84884956289461,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.85% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-a",
+          "parameters": {
+            "containerName": "aegis-service-a"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.85% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 799,
+      "success": true
+    }
+  },
+  {
+    "id": "0d49d406-b0df-4d8a-a593-e1434ef1b6d1",
+    "time": "7:04:17 PM",
+    "service": "service-b",
+    "symptoms": [
+      "error burst",
+      "service down"
+    ],
+    "root_cause": "service crash or unresponsive",
+    "action": "restart",
+    "confidence": 0.95,
+    "details": {
+      "anomalies": [
+        {
+          "id": "12c52c1e-0e78-48db-aacb-a13d07d25eb7",
+          "serviceName": "service-b",
+          "type": "error_burst",
+          "severity": "critical",
+          "timestamp": "2026-07-19T19:04:13.298Z",
+          "value": 100,
+          "threshold": 5,
+          "baseline": 0,
+          "description": "Error rate spike: 100.00% (threshold: 5%)",
+          "symptoms": [
+            "error burst"
+          ]
+        },
+        {
+          "id": "63e7b0f6-571f-42e7-8b91-756c2c24aa4e",
+          "serviceName": "service-b",
+          "type": "service_down",
+          "severity": "critical",
+          "timestamp": "2026-07-19T19:04:13.298Z",
+          "value": 0,
+          "threshold": 1,
+          "baseline": 100,
+          "description": "Service service-b is DOWN - not responding to health checks",
+          "symptoms": [
+            "service down"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "7390ffca-4463-443d-958a-2cd23fe2fbd3",
+        "timestamp": "2026-07-19T19:04:17.235Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "12c52c1e-0e78-48db-aacb-a13d07d25eb7",
+            "serviceName": "service-b",
+            "type": "error_burst",
+            "severity": "critical",
+            "timestamp": "2026-07-19T19:04:13.298Z",
+            "value": 100,
+            "threshold": 5,
+            "baseline": 0,
+            "description": "Error rate spike: 100.00% (threshold: 5%)",
+            "symptoms": [
+              "error burst"
+            ]
+          },
+          {
+            "id": "63e7b0f6-571f-42e7-8b91-756c2c24aa4e",
+            "serviceName": "service-b",
+            "type": "service_down",
+            "severity": "critical",
+            "timestamp": "2026-07-19T19:04:13.298Z",
+            "value": 0,
+            "threshold": 1,
+            "baseline": 100,
+            "description": "Service service-b is DOWN - not responding to health checks",
+            "symptoms": [
+              "service down"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "service crash or unresponsive",
+          "contributing": [
+            "increased error rate",
+            "service unavailable"
+          ],
+          "confidence": 0.95
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-b",
+          "parameters": {
+            "containerName": "aegis-service-b"
+          }
+        },
+        "confidence": 0.95,
+        "reasoning": "Detected: Error rate spike: 100.00% (threshold: 5%); Service service-b is DOWN - not responding to health checks. Root cause identified as service crash or unresponsive with 95% confidence. Taking action: restart."
+      },
+      "executionTime": 153,
+      "success": true
+    }
+  },
+  {
+    "id": "fd9e2d10-512a-44aa-8cd7-a04a430f59a7",
+    "time": "7:06:13 PM",
+    "service": "service-c",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "efa86b6d-a74e-43d4-8ef5-2481f5084900",
+          "serviceName": "service-c",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:06:08.387Z",
+          "value": 92.04872283268577,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.05% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "2e494d25-563c-47b6-9c34-226db8bc1500",
+        "timestamp": "2026-07-19T19:06:12.402Z",
+        "serviceName": "service-c",
+        "symptoms": [
+          {
+            "id": "efa86b6d-a74e-43d4-8ef5-2481f5084900",
+            "serviceName": "service-c",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:06:08.387Z",
+            "value": 92.04872283268577,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.05% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-c",
+          "parameters": {
+            "containerName": "aegis-service-c"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.05% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 885,
+      "success": true
+    }
+  },
+  {
+    "id": "dbf8c529-cce6-4cc6-b358-3b1d27f5d446",
+    "time": "7:06:14 PM",
+    "service": "service-a",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "8ed76173-c668-4227-943a-8b734cd01bce",
+          "serviceName": "service-a",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:06:08.388Z",
+          "value": 92.36905809859155,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.37% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "89a3f94c-a4fc-40df-bba0-059e35020716",
+        "timestamp": "2026-07-19T19:06:13.290Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "8ed76173-c668-4227-943a-8b734cd01bce",
+            "serviceName": "service-a",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:06:08.388Z",
+            "value": 92.36905809859155,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.37% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-a",
+          "parameters": {
+            "containerName": "aegis-service-a"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.37% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 862,
+      "success": true
+    }
+  },
+  {
+    "id": "55db9848-7ffa-4138-9815-03b896ec86e0",
+    "time": "7:06:58 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "c9422b9a-f44f-4eb1-94a8-e42202ba3dcc",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "critical",
+          "timestamp": "2026-07-19T19:06:55.962Z",
+          "value": 19,
+          "threshold": 7.60577144924289,
+          "baseline": 4.840277777777778,
+          "description": "Latency spike detected: 19.00ms (baseline: 4.84ms, Z-score: 10.24)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "cf306ff2-3d42-4c5b-af7c-05c103fc398a",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:06:55.962Z",
+          "value": 86.82886445473251,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 86.83% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "8602edfc-a35e-4123-b974-3d1d92dc6429",
+        "timestamp": "2026-07-19T19:06:57.468Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "c9422b9a-f44f-4eb1-94a8-e42202ba3dcc",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "critical",
+            "timestamp": "2026-07-19T19:06:55.962Z",
+            "value": 19,
+            "threshold": 7.60577144924289,
+            "baseline": 4.840277777777778,
+            "description": "Latency spike detected: 19.00ms (baseline: 4.84ms, Z-score: 10.24)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "cf306ff2-3d42-4c5b-af7c-05c103fc398a",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:06:55.962Z",
+            "value": 86.82886445473251,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 86.83% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-b",
+          "parameters": {
+            "containerName": "aegis-service-b"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Latency spike detected: 19.00ms (baseline: 4.84ms, Z-score: 10.24); Memory usage critical: 86.83% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 825,
+      "success": true
+    }
+  },
+  {
+    "id": "45e2b958-dc2d-4295-9bf1-e5e14ae0ffa0",
+    "time": "7:08:13 PM",
+    "service": "service-a",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "71f7f305-29d5-4161-a615-d71b48a50635",
+          "serviceName": "service-a",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:08:08.659Z",
+          "value": 92.54131422305764,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.54% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "035ba4a7-168a-402b-8d70-116b9b0292ca",
+        "timestamp": "2026-07-19T19:08:12.626Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "71f7f305-29d5-4161-a615-d71b48a50635",
+            "serviceName": "service-a",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:08:08.659Z",
+            "value": 92.54131422305764,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.54% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-a",
+          "parameters": {
+            "containerName": "aegis-service-a"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.54% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 894,
+      "success": true
+    }
+  },
+  {
+    "id": "d5411625-239b-4234-bade-79baa6c45cc5",
+    "time": "7:08:14 PM",
+    "service": "service-c",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "996cb436-56d2-4f96-b0b4-51f884f4907c",
+          "serviceName": "service-c",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:08:08.661Z",
+          "value": 92.14168233082707,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.14% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "4aaeaec1-6f73-47a5-8767-ed3df8013e4d",
+        "timestamp": "2026-07-19T19:08:13.524Z",
+        "serviceName": "service-c",
+        "symptoms": [
+          {
+            "id": "996cb436-56d2-4f96-b0b4-51f884f4907c",
+            "serviceName": "service-c",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:08:08.661Z",
+            "value": 92.14168233082707,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.14% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-c",
+          "parameters": {
+            "containerName": "aegis-service-c"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.14% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 809,
+      "success": true
+    }
+  },
+  {
+    "id": "a5d0c761-e452-4ee3-bedb-414c25e22983",
+    "time": "7:09:38 PM",
+    "service": "service-b",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "4393ba23-a332-4db3-ba9f-80db0611dc59",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:09:33.873Z",
+          "value": 93.42008408207867,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 93.42% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "ad1ab7e4-3d56-454b-824e-ba8e042fafc1",
+        "timestamp": "2026-07-19T19:09:37.862Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "4393ba23-a332-4db3-ba9f-80db0611dc59",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:09:33.873Z",
+            "value": 93.42008408207867,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 93.42% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-b",
+          "parameters": {
+            "containerName": "aegis-service-b"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 93.42% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 1057,
+      "success": true
+    }
+  },
+  {
+    "id": "01b05fb9-dee1-4f70-b4b6-64e16ed2f277",
+    "time": "7:10:53 PM",
+    "service": "service-a",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "426d8f3b-65c9-4f29-be31-99119734c4b4",
+          "serviceName": "service-a",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:10:48.980Z",
+          "value": 92.06788413671686,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.07% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "13c539f9-8b77-42e7-98c9-fe88027cad7f",
+        "timestamp": "2026-07-19T19:10:53.001Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "426d8f3b-65c9-4f29-be31-99119734c4b4",
+            "serviceName": "service-a",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:10:48.980Z",
+            "value": 92.06788413671686,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.07% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-a",
+          "parameters": {
+            "containerName": "aegis-service-a"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.07% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 904,
+      "success": true
+    }
+  },
+  {
+    "id": "2320b37d-2a2f-4097-8741-a1790b4f8e0d",
+    "time": "7:10:54 PM",
+    "service": "service-c",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "7b71a740-bcc2-4797-ba6b-793199795747",
+          "serviceName": "service-c",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:10:48.980Z",
+          "value": 92.00518303788246,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.01% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "7c49eda8-23a6-4d70-b01e-83bd89d4eaed",
+        "timestamp": "2026-07-19T19:10:53.921Z",
+        "serviceName": "service-c",
+        "symptoms": [
+          {
+            "id": "7b71a740-bcc2-4797-ba6b-793199795747",
+            "serviceName": "service-c",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:10:48.980Z",
+            "value": 92.00518303788246,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.01% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-c",
+          "parameters": {
+            "containerName": "aegis-service-c"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.01% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 806,
+      "success": true
+    }
+  },
+  {
+    "id": "c16435cd-114d-40d4-b348-efb3accf59f5",
+    "time": "7:11:34 PM",
+    "service": "service-b",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "cad45f5f-67ef-4f97-a961-8b6aefa1d1f9",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:11:29.064Z",
+          "value": 92.67240366541354,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.67% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "7f062615-abb3-44f0-8872-f4843375175e",
+        "timestamp": "2026-07-19T19:11:33.107Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "cad45f5f-67ef-4f97-a961-8b6aefa1d1f9",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:11:29.064Z",
+            "value": 92.67240366541354,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.67% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-b",
+          "parameters": {
+            "containerName": "aegis-service-b"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.67% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 1263,
+      "success": true
+    }
+  },
+  {
+    "id": "57c66401-57f8-4530-bccf-40c613109cab",
+    "time": "7:13:34 PM",
+    "service": "service-b",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "0c23ca6f-77d2-4f76-b24d-63503272dcfc",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:13:29.515Z",
+          "value": 93.16034226190476,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 93.16% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "1d371740-af2d-44ba-bd5a-eeb6e1d2711c",
+        "timestamp": "2026-07-19T19:13:33.429Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "0c23ca6f-77d2-4f76-b24d-63503272dcfc",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:13:29.515Z",
+            "value": 93.16034226190476,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 93.16% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-b",
+          "parameters": {
+            "containerName": "aegis-service-b"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 93.16% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 891,
+      "success": true
+    }
+  },
+  {
+    "id": "50aedc90-e159-423a-8ba0-f967bb261c6e",
+    "time": "7:13:39 PM",
+    "service": "service-a",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "5fe2e027-b190-4be7-8b00-e8af66966e0a",
+          "serviceName": "service-a",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:13:34.496Z",
+          "value": 92.06617669378339,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.07% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "9b735634-ad82-431e-9f7d-f56251ba8a5f",
+        "timestamp": "2026-07-19T19:13:38.424Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "5fe2e027-b190-4be7-8b00-e8af66966e0a",
+            "serviceName": "service-a",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:13:34.496Z",
+            "value": 92.06617669378339,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.07% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-a",
+          "parameters": {
+            "containerName": "aegis-service-a"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.07% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 852,
+      "success": true
+    }
+  },
+  {
+    "id": "591b053d-9538-4af7-a5fe-6dfa15b73209",
+    "time": "7:13:40 PM",
+    "service": "service-c",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "a052f0ec-7186-478a-a853-18f160c38218",
+          "serviceName": "service-c",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:13:34.496Z",
+          "value": 92.52320225230694,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.52% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "98e1ba53-5a2a-4d23-98dd-0300c666ea8b",
+        "timestamp": "2026-07-19T19:13:39.297Z",
+        "serviceName": "service-c",
+        "symptoms": [
+          {
+            "id": "a052f0ec-7186-478a-a853-18f160c38218",
+            "serviceName": "service-c",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:13:34.496Z",
+            "value": 92.52320225230694,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.52% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-c",
+          "parameters": {
+            "containerName": "aegis-service-c"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.52% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 812,
+      "success": true
+    }
+  },
+  {
+    "id": "42397266-7d4e-449d-a3b1-9dcc4ac2c4ab",
+    "time": "7:15:34 PM",
+    "service": "service-a",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "e5ba23ed-fbe0-4a0b-8051-008619d00292",
+          "serviceName": "service-a",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:15:29.709Z",
+          "value": 92.11446585213032,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.11% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "2e64340d-7662-4c3b-a33e-2584920db760",
+        "timestamp": "2026-07-19T19:15:33.794Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "e5ba23ed-fbe0-4a0b-8051-008619d00292",
+            "serviceName": "service-a",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:15:29.709Z",
+            "value": 92.11446585213032,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.11% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-a",
+          "parameters": {
+            "containerName": "aegis-service-a"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.11% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 906,
+      "success": true
+    }
+  },
+  {
+    "id": "b5cfb7b7-7e65-4000-bb8e-94578c96c445",
+    "time": "7:15:39 PM",
+    "service": "service-c",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "03069c34-fa31-49a9-ad87-cceb705c86af",
+          "serviceName": "service-c",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:15:34.722Z",
+          "value": 92.92351973684211,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.92% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "caed70d2-3f9e-4fcb-a3ad-e2bc8bc0ed5d",
+        "timestamp": "2026-07-19T19:15:38.826Z",
+        "serviceName": "service-c",
+        "symptoms": [
+          {
+            "id": "03069c34-fa31-49a9-ad87-cceb705c86af",
+            "serviceName": "service-c",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:15:34.722Z",
+            "value": 92.92351973684211,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.92% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-c",
+          "parameters": {
+            "containerName": "aegis-service-c"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.92% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 797,
+      "success": true
+    }
+  },
+  {
+    "id": "403f1176-0d0b-407d-986d-065e601b21b5",
+    "time": "7:16:14 PM",
+    "service": "service-b",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "f879299c-8be8-4d76-9ed3-1f6dadfe132b",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:16:09.792Z",
+          "value": 92.35378597013113,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.35% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "df47dbc5-dff9-4c3e-947b-216f8139c6c3",
+        "timestamp": "2026-07-19T19:16:13.849Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "f879299c-8be8-4d76-9ed3-1f6dadfe132b",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:16:09.792Z",
+            "value": 92.35378597013113,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.35% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-b",
+          "parameters": {
+            "containerName": "aegis-service-b"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.35% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 895,
+      "success": true
+    }
+  }
+]
