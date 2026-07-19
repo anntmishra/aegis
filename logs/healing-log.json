@@ -3086,5 +3086,1311 @@
       "executionTime": 918,
       "success": true
     }
+  },
+  {
+    "id": "0ecdbe69-380e-401b-b68f-84fd6a2d1d05",
+    "time": "7:23:41 PM",
+    "service": "service-b",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "ce86861d-4828-4f97-b2a6-a68b95ace242",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:23:36.498Z",
+          "value": 92.53211889873725,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.53% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "2d20b054-36a1-4261-8754-85d9e3e5297d",
+        "timestamp": "2026-07-19T19:23:40.377Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "ce86861d-4828-4f97-b2a6-a68b95ace242",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:23:36.498Z",
+            "value": 92.53211889873725,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.53% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-b",
+          "parameters": {
+            "containerName": "aegis-service-b"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.53% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 1090,
+      "success": true
+    }
+  },
+  {
+    "id": "5844945d-f3de-4fe0-90ef-32fe8e72cb77",
+    "time": "7:23:56 PM",
+    "service": "service-a",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "b0ac2931-fb94-4290-93f4-06f7733bb183",
+          "serviceName": "service-a",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:23:51.551Z",
+          "value": 93.28168634652744,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 93.28% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "855a998b-d0b4-43e5-96ad-cf4678da9bed",
+        "timestamp": "2026-07-19T19:23:55.431Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "b0ac2931-fb94-4290-93f4-06f7733bb183",
+            "serviceName": "service-a",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:23:51.551Z",
+            "value": 93.28168634652744,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 93.28% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-a",
+          "parameters": {
+            "containerName": "aegis-service-a"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 93.28% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 1006,
+      "success": true
+    }
+  },
+  {
+    "id": "d5ce4bd3-1c6c-4399-b144-320d3b83f129",
+    "time": "7:24:21 PM",
+    "service": "service-c",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "294316ed-79aa-4ff1-9c2d-6620d7abc5ac",
+          "serviceName": "service-c",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:24:16.790Z",
+          "value": 92.40349153108305,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.40% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "cd223f2d-43c7-4b23-80b5-8d1e81d86656",
+        "timestamp": "2026-07-19T19:24:20.481Z",
+        "serviceName": "service-c",
+        "symptoms": [
+          {
+            "id": "294316ed-79aa-4ff1-9c2d-6620d7abc5ac",
+            "serviceName": "service-c",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:24:16.790Z",
+            "value": 92.40349153108305,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.40% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-c",
+          "parameters": {
+            "containerName": "aegis-service-c"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.40% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 1035,
+      "success": true
+    }
+  },
+  {
+    "id": "1c484115-5fdc-4338-ab0b-e06ce7b043df",
+    "time": "7:25:20 PM",
+    "service": "service-a",
+    "symptoms": [
+      "latency spike"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "6beab6be-d646-4cd5-98e3-fca6dcfdd678",
+          "serviceName": "service-a",
+          "type": "latency_spike",
+          "severity": "critical",
+          "timestamp": "2026-07-19T19:25:17.998Z",
+          "value": 25,
+          "threshold": 12.734760091028674,
+          "baseline": 6.980769230769227,
+          "description": "Latency spike detected: 25.00ms (baseline: 6.98ms, Z-score: 6.26)",
+          "symptoms": [
+            "latency spike"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "176c3bbf-7da6-4249-b88c-e8c8a93398c7",
+        "timestamp": "2026-07-19T19:25:20.949Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "6beab6be-d646-4cd5-98e3-fca6dcfdd678",
+            "serviceName": "service-a",
+            "type": "latency_spike",
+            "severity": "critical",
+            "timestamp": "2026-07-19T19:25:17.998Z",
+            "value": 25,
+            "threshold": 12.734760091028674,
+            "baseline": 6.980769230769227,
+            "description": "Latency spike detected: 25.00ms (baseline: 6.98ms, Z-score: 6.26)",
+            "symptoms": [
+              "latency spike"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-a",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 25.00ms (baseline: 6.98ms, Z-score: 6.26). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 1,
+      "success": true
+    }
+  },
+  {
+    "id": "51853a53-55b9-4381-ac1a-8324d67a7e6a",
+    "time": "7:25:30 PM",
+    "service": "service-a",
+    "symptoms": [
+      "latency spike"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "22f090fa-0cfe-4752-89f0-f65edc66bf7c",
+          "serviceName": "service-a",
+          "type": "latency_spike",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:25:28.090Z",
+          "value": 17,
+          "threshold": 13.104699686091388,
+          "baseline": 7.043715846994532,
+          "description": "Latency spike detected: 17.00ms (baseline: 7.04ms, Z-score: 3.29)",
+          "symptoms": [
+            "latency spike"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "407c38c7-07e9-45b9-8e87-68cf699f24a2",
+        "timestamp": "2026-07-19T19:25:30.981Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "22f090fa-0cfe-4752-89f0-f65edc66bf7c",
+            "serviceName": "service-a",
+            "type": "latency_spike",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:25:28.090Z",
+            "value": 17,
+            "threshold": 13.104699686091388,
+            "baseline": 7.043715846994532,
+            "description": "Latency spike detected: 17.00ms (baseline: 7.04ms, Z-score: 3.29)",
+            "symptoms": [
+              "latency spike"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-a",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 17.00ms (baseline: 7.04ms, Z-score: 3.29). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 1,
+      "success": true
+    }
+  },
+  {
+    "id": "3bc230b1-cd4b-4cb1-ab9d-13e5086bf46b",
+    "time": "7:25:36 PM",
+    "service": "service-a",
+    "symptoms": [
+      "latency spike"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "f1444d3b-b960-419a-9f92-4350911a8921",
+          "serviceName": "service-a",
+          "type": "latency_spike",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:25:33.094Z",
+          "value": 17,
+          "threshold": 13.211927176628796,
+          "baseline": 7.070844686648498,
+          "description": "Latency spike detected: 17.00ms (baseline: 7.07ms, Z-score: 3.23)",
+          "symptoms": [
+            "latency spike"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "de8de943-71fc-4e98-91ec-d7c94d9fcc01",
+        "timestamp": "2026-07-19T19:25:36.021Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "f1444d3b-b960-419a-9f92-4350911a8921",
+            "serviceName": "service-a",
+            "type": "latency_spike",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:25:33.094Z",
+            "value": 17,
+            "threshold": 13.211927176628796,
+            "baseline": 7.070844686648498,
+            "description": "Latency spike detected: 17.00ms (baseline: 7.07ms, Z-score: 3.23)",
+            "symptoms": [
+              "latency spike"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-a",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 17.00ms (baseline: 7.07ms, Z-score: 3.23). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 3,
+      "success": true
+    }
+  },
+  {
+    "id": "2fd5049b-327b-481b-adfc-4591d8f038b3",
+    "time": "7:25:41 PM",
+    "service": "service-a",
+    "symptoms": [
+      "latency spike"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "df91a6d4-7179-4576-825c-5a621370ae34",
+          "serviceName": "service-a",
+          "type": "latency_spike",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:25:38.074Z",
+          "value": 17,
+          "threshold": 13.317079380655922,
+          "baseline": 7.097826086956519,
+          "description": "Latency spike detected: 17.00ms (baseline: 7.10ms, Z-score: 3.18)",
+          "symptoms": [
+            "latency spike"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "40a59ab6-234a-4707-912a-fbcd82fa93d1",
+        "timestamp": "2026-07-19T19:25:41.027Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "df91a6d4-7179-4576-825c-5a621370ae34",
+            "serviceName": "service-a",
+            "type": "latency_spike",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:25:38.074Z",
+            "value": 17,
+            "threshold": 13.317079380655922,
+            "baseline": 7.097826086956519,
+            "description": "Latency spike detected: 17.00ms (baseline: 7.10ms, Z-score: 3.18)",
+            "symptoms": [
+              "latency spike"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-a",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 17.00ms (baseline: 7.10ms, Z-score: 3.18). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 4,
+      "success": true
+    }
+  },
+  {
+    "id": "bd483174-8e64-455d-a1d8-5a22e3d5cef2",
+    "time": "7:25:41 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "8d990d32-1f7d-43ed-b906-29833632c28e",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:25:38.076Z",
+          "value": 16,
+          "threshold": 13.910540234414775,
+          "baseline": 6.755434782608695,
+          "description": "Latency spike detected: 16.00ms (baseline: 6.76ms, Z-score: 2.58)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "c2c44386-42d6-4d8e-b7f2-30b2a32e8606",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:25:38.076Z",
+          "value": 89.19871600291404,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 89.20% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "94970c25-7ccf-4247-b12d-a7a9b35d0f31",
+        "timestamp": "2026-07-19T19:25:41.058Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "8d990d32-1f7d-43ed-b906-29833632c28e",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:25:38.076Z",
+            "value": 16,
+            "threshold": 13.910540234414775,
+            "baseline": 6.755434782608695,
+            "description": "Latency spike detected: 16.00ms (baseline: 6.76ms, Z-score: 2.58)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "c2c44386-42d6-4d8e-b7f2-30b2a32e8606",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:25:38.076Z",
+            "value": 89.19871600291404,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 89.20% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-b",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 16.00ms (baseline: 6.76ms, Z-score: 2.58); Memory usage critical: 89.20% (threshold: 85%). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 0,
+      "success": true
+    }
+  },
+  {
+    "id": "ddb6ff84-61f1-4612-9b7b-0536a6950b0e",
+    "time": "7:25:46 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "01db4e6a-6100-4f89-b417-1c2f3be30756",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:25:43.168Z",
+          "value": 16,
+          "threshold": 13.990251970174189,
+          "baseline": 6.780487804878049,
+          "description": "Latency spike detected: 16.00ms (baseline: 6.78ms, Z-score: 2.56)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "c50996ac-2166-4a50-bbcf-d8340f110b1c",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:25:43.168Z",
+          "value": 90.56410120203982,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 90.56% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "32ea8b63-afd1-4f90-bbe7-c472fbe9a311",
+        "timestamp": "2026-07-19T19:25:46.090Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "01db4e6a-6100-4f89-b417-1c2f3be30756",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:25:43.168Z",
+            "value": 16,
+            "threshold": 13.990251970174189,
+            "baseline": 6.780487804878049,
+            "description": "Latency spike detected: 16.00ms (baseline: 6.78ms, Z-score: 2.56)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "c50996ac-2166-4a50-bbcf-d8340f110b1c",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:25:43.168Z",
+            "value": 90.56410120203982,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 90.56% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-b",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 16.00ms (baseline: 6.78ms, Z-score: 2.56); Memory usage critical: 90.56% (threshold: 85%). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 0,
+      "success": true
+    }
+  },
+  {
+    "id": "b9acac42-21de-4629-87ad-de4e6d8260d4",
+    "time": "7:25:46 PM",
+    "service": "service-a",
+    "symptoms": [
+      "latency spike"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "6994d8f7-c12f-4db6-9bfc-1bfa1f212e11",
+          "serviceName": "service-a",
+          "type": "latency_spike",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:25:43.172Z",
+          "value": 17,
+          "threshold": 13.420240271542713,
+          "baseline": 7.1246612466124635,
+          "description": "Latency spike detected: 17.00ms (baseline: 7.12ms, Z-score: 3.14)",
+          "symptoms": [
+            "latency spike"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "d772617f-68c4-410e-8b3e-e661c360cc5a",
+        "timestamp": "2026-07-19T19:25:46.152Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "6994d8f7-c12f-4db6-9bfc-1bfa1f212e11",
+            "serviceName": "service-a",
+            "type": "latency_spike",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:25:43.172Z",
+            "value": 17,
+            "threshold": 13.420240271542713,
+            "baseline": 7.1246612466124635,
+            "description": "Latency spike detected: 17.00ms (baseline: 7.12ms, Z-score: 3.14)",
+            "symptoms": [
+              "latency spike"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-a",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 17.00ms (baseline: 7.12ms, Z-score: 3.14). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 2,
+      "success": true
+    }
+  },
+  {
+    "id": "15eb3530-d314-4b80-b9d3-e7bec89ef649",
+    "time": "7:25:51 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "68d92b1c-27b9-40a7-93b1-38c537218a25",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:25:48.155Z",
+          "value": 16,
+          "threshold": 14.068782022594302,
+          "baseline": 6.805405405405406,
+          "description": "Latency spike detected: 16.00ms (baseline: 6.81ms, Z-score: 2.53)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "281a1975-3ea1-408e-a387-eb28e12cf103",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:25:48.155Z",
+          "value": 91.44751320422534,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 91.45% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "776553fc-1996-45cc-ac4b-9b9999fc0641",
+        "timestamp": "2026-07-19T19:25:51.086Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "68d92b1c-27b9-40a7-93b1-38c537218a25",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:25:48.155Z",
+            "value": 16,
+            "threshold": 14.068782022594302,
+            "baseline": 6.805405405405406,
+            "description": "Latency spike detected: 16.00ms (baseline: 6.81ms, Z-score: 2.53)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "281a1975-3ea1-408e-a387-eb28e12cf103",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:25:48.155Z",
+            "value": 91.44751320422534,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 91.45% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-b",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 16.00ms (baseline: 6.81ms, Z-score: 2.53); Memory usage critical: 91.45% (threshold: 85%). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 0,
+      "success": true
+    }
+  },
+  {
+    "id": "ca340b4d-e0e8-4b95-be9d-6d85d5bafb0c",
+    "time": "7:25:51 PM",
+    "service": "service-a",
+    "symptoms": [
+      "latency spike"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "5021dae6-d6c7-480d-9e2d-7c6b3ffa7b92",
+          "serviceName": "service-a",
+          "type": "latency_spike",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:25:48.156Z",
+          "value": 17,
+          "threshold": 13.521488033091131,
+          "baseline": 7.151351351351349,
+          "description": "Latency spike detected: 17.00ms (baseline: 7.15ms, Z-score: 3.09)",
+          "symptoms": [
+            "latency spike"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "e1612e4b-34c7-4718-af54-8c6303d52ab2",
+        "timestamp": "2026-07-19T19:25:51.096Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "5021dae6-d6c7-480d-9e2d-7c6b3ffa7b92",
+            "serviceName": "service-a",
+            "type": "latency_spike",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:25:48.156Z",
+            "value": 17,
+            "threshold": 13.521488033091131,
+            "baseline": 7.151351351351349,
+            "description": "Latency spike detected: 17.00ms (baseline: 7.15ms, Z-score: 3.09)",
+            "symptoms": [
+              "latency spike"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-a",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 17.00ms (baseline: 7.15ms, Z-score: 3.09). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 1,
+      "success": true
+    }
+  },
+  {
+    "id": "6d4b65ab-1c76-489b-bb17-7a7857ffef25",
+    "time": "7:25:57 PM",
+    "service": "service-b",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "6cf56303-657a-43d0-a938-5d14eed05b62",
+          "serviceName": "service-b",
+          "type": "latency_spike",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:25:53.177Z",
+          "value": 16,
+          "threshold": 14.146162331299172,
+          "baseline": 6.830188679245283,
+          "description": "Latency spike detected: 16.00ms (baseline: 6.83ms, Z-score: 2.51)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "418d4f3a-4597-4222-9bfa-303f78d462f5",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:25:53.177Z",
+          "value": 92.33187378581836,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.33% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "e7e3d7f0-0b49-43eb-b1a8-59796d9cc6fd",
+        "timestamp": "2026-07-19T19:25:56.229Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "6cf56303-657a-43d0-a938-5d14eed05b62",
+            "serviceName": "service-b",
+            "type": "latency_spike",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:25:53.177Z",
+            "value": 16,
+            "threshold": 14.146162331299172,
+            "baseline": 6.830188679245283,
+            "description": "Latency spike detected: 16.00ms (baseline: 6.83ms, Z-score: 2.51)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "418d4f3a-4597-4222-9bfa-303f78d462f5",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:25:53.177Z",
+            "value": 92.33187378581836,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.33% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-b",
+          "parameters": {
+            "containerName": "aegis-service-b"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Latency spike detected: 16.00ms (baseline: 6.83ms, Z-score: 2.51); Memory usage critical: 92.33% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 1753,
+      "success": true
+    }
+  },
+  {
+    "id": "04db3bbb-927e-4ddb-9321-c95ae34db9f8",
+    "time": "7:25:58 PM",
+    "service": "service-a",
+    "symptoms": [
+      "latency spike"
+    ],
+    "root_cause": "temporary latency increase",
+    "action": "throttle",
+    "confidence": 0.6,
+    "details": {
+      "anomalies": [
+        {
+          "id": "fbe426cb-7ff8-48c2-a112-41062c7ff5a5",
+          "serviceName": "service-a",
+          "type": "latency_spike",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:25:53.178Z",
+          "value": 17,
+          "threshold": 13.620895620736734,
+          "baseline": 7.177897574123987,
+          "description": "Latency spike detected: 17.00ms (baseline: 7.18ms, Z-score: 3.05)",
+          "symptoms": [
+            "latency spike"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "11b09d3b-38a9-4e1f-b009-05f4c1f052d5",
+        "timestamp": "2026-07-19T19:25:58.001Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "fbe426cb-7ff8-48c2-a112-41062c7ff5a5",
+            "serviceName": "service-a",
+            "type": "latency_spike",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:25:53.178Z",
+            "value": 17,
+            "threshold": 13.620895620736734,
+            "baseline": 7.177897574123987,
+            "description": "Latency spike detected: 17.00ms (baseline: 7.18ms, Z-score: 3.05)",
+            "symptoms": [
+              "latency spike"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "temporary latency increase",
+          "contributing": [
+            "elevated response times"
+          ],
+          "confidence": 0.6
+        },
+        "action": {
+          "type": "throttle",
+          "serviceName": "service-a",
+          "parameters": {
+            "rateLimit": 100
+          }
+        },
+        "confidence": 0.6,
+        "reasoning": "Detected: Latency spike detected: 17.00ms (baseline: 7.18ms, Z-score: 3.05). Root cause identified as temporary latency increase with 60% confidence. Taking action: throttle."
+      },
+      "executionTime": 3,
+      "success": true
+    }
+  },
+  {
+    "id": "c7a0e2be-bf00-4dff-b764-56e8d324a401",
+    "time": "7:26:02 PM",
+    "service": "service-a",
+    "symptoms": [
+      "latency spike",
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "45005dbe-205d-4176-8467-f4c1f40195ca",
+          "serviceName": "service-a",
+          "type": "latency_spike",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:25:58.171Z",
+          "value": 17,
+          "threshold": 13.71853125390162,
+          "baseline": 7.204301075268815,
+          "description": "Latency spike detected: 17.00ms (baseline: 7.20ms, Z-score: 3.01)",
+          "symptoms": [
+            "latency spike"
+          ]
+        },
+        {
+          "id": "e1cb8843-a617-435a-974a-8d7968166a96",
+          "serviceName": "service-a",
+          "type": "memory_exhaustion",
+          "severity": "medium",
+          "timestamp": "2026-07-19T19:25:58.171Z",
+          "value": 85.81418467702768,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 85.81% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "c61f2895-3770-4d17-9a3a-6f38f676d2a2",
+        "timestamp": "2026-07-19T19:26:01.190Z",
+        "serviceName": "service-a",
+        "symptoms": [
+          {
+            "id": "45005dbe-205d-4176-8467-f4c1f40195ca",
+            "serviceName": "service-a",
+            "type": "latency_spike",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:25:58.171Z",
+            "value": 17,
+            "threshold": 13.71853125390162,
+            "baseline": 7.204301075268815,
+            "description": "Latency spike detected: 17.00ms (baseline: 7.20ms, Z-score: 3.01)",
+            "symptoms": [
+              "latency spike"
+            ]
+          },
+          {
+            "id": "e1cb8843-a617-435a-974a-8d7968166a96",
+            "serviceName": "service-a",
+            "type": "memory_exhaustion",
+            "severity": "medium",
+            "timestamp": "2026-07-19T19:25:58.171Z",
+            "value": 85.81418467702768,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 85.81% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "elevated response times",
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-a",
+          "parameters": {
+            "containerName": "aegis-service-a"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Latency spike detected: 17.00ms (baseline: 7.20ms, Z-score: 3.01); Memory usage critical: 85.81% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 1028,
+      "success": true
+    }
+  },
+  {
+    "id": "4677f03b-146b-49e2-bd0d-fe0c0298afbd",
+    "time": "7:27:02 PM",
+    "service": "service-c",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "4d8d31e6-49e9-404b-b780-3cc44e9b82af",
+          "serviceName": "service-c",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:26:58.409Z",
+          "value": 92.03629644244778,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.04% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "31aabab1-307c-4d41-9854-166da0c2c7bd",
+        "timestamp": "2026-07-19T19:27:01.363Z",
+        "serviceName": "service-c",
+        "symptoms": [
+          {
+            "id": "4d8d31e6-49e9-404b-b780-3cc44e9b82af",
+            "serviceName": "service-c",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:26:58.409Z",
+            "value": 92.03629644244778,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.04% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-c",
+          "parameters": {
+            "containerName": "aegis-service-c"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.04% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 1138,
+      "success": true
+    }
+  },
+  {
+    "id": "67df5ac4-4a4a-496d-8833-8130303e0689",
+    "time": "7:27:52 PM",
+    "service": "service-b",
+    "symptoms": [
+      "memory exhaustion"
+    ],
+    "root_cause": "memory exhaustion",
+    "action": "restart",
+    "confidence": 0.85,
+    "details": {
+      "anomalies": [
+        {
+          "id": "c574cd70-8f94-40fe-b10b-414f758a8134",
+          "serviceName": "service-b",
+          "type": "memory_exhaustion",
+          "severity": "high",
+          "timestamp": "2026-07-19T19:27:48.664Z",
+          "value": 92.45535714285714,
+          "threshold": 85,
+          "baseline": 50,
+          "description": "Memory usage critical: 92.46% (threshold: 85%)",
+          "symptoms": [
+            "memory exhaustion"
+          ]
+        }
+      ],
+      "decision": {
+        "id": "7551a84d-f58a-42d4-9f41-a423dc48c7b5",
+        "timestamp": "2026-07-19T19:27:51.496Z",
+        "serviceName": "service-b",
+        "symptoms": [
+          {
+            "id": "c574cd70-8f94-40fe-b10b-414f758a8134",
+            "serviceName": "service-b",
+            "type": "memory_exhaustion",
+            "severity": "high",
+            "timestamp": "2026-07-19T19:27:48.664Z",
+            "value": 92.45535714285714,
+            "threshold": 85,
+            "baseline": 50,
+            "description": "Memory usage critical: 92.46% (threshold: 85%)",
+            "symptoms": [
+              "memory exhaustion"
+            ]
+          }
+        ],
+        "rootCause": {
+          "primary": "memory exhaustion",
+          "contributing": [
+            "high memory usage"
+          ],
+          "confidence": 0.85
+        },
+        "action": {
+          "type": "restart",
+          "serviceName": "service-b",
+          "parameters": {
+            "containerName": "aegis-service-b"
+          }
+        },
+        "confidence": 0.85,
+        "reasoning": "Detected: Memory usage critical: 92.46% (threshold: 85%). Root cause identified as memory exhaustion with 85% confidence. Taking action: restart."
+      },
+      "executionTime": 1012,
+      "success": true
+    }
   }
 ]

@@ -1,8 +1,3 @@
-// =====================================================
-// Service C - Inventory Service
-// Aegis Self-Healing Distributed System
-// =====================================================
-
 import express, { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,7 +5,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const SERVICE_NAME = process.env.SERVICE_NAME || 'service-c';
 
-// Metrics storage
 interface Metrics {
   requestCount: number;
   errorCount: number;
@@ -25,7 +19,6 @@ const metrics: Metrics = {
   startTime: new Date(),
 };
 
-// Simulated inventory database
 interface InventoryItem {
   id: string;
   name: string;
@@ -40,12 +33,10 @@ const inventory: Map<string, InventoryItem> = new Map([
   ['item-3', { id: 'item-3', name: 'Widget C', quantity: 200, price: 4.99, lastUpdated: new Date().toISOString() }],
 ]);
 
-// Simulated failure states
 let simulatedFailure = false;
 let simulatedLatency = 0;
 let memoryLeak: number[] = [];
 
-// Middleware to track request metrics
 app.use((req: Request, res: Response, next: NextFunction) => {
   const startTime = Date.now();
   metrics.requestCount++;
@@ -68,9 +59,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use(express.json());
 
-// =====================================================
-// Health Check Endpoint
-// =====================================================
 app.get('/health', async (req: Request, res: Response) => {
   if (simulatedFailure) {
     res.status(503).json({
@@ -97,9 +85,6 @@ app.get('/health', async (req: Request, res: Response) => {
   });
 });
 
-// =====================================================
-// Metrics Endpoint
-// =====================================================
 app.get('/metrics', (req: Request, res: Response) => {
   const memoryUsage = process.memoryUsage();
   
@@ -119,11 +104,6 @@ app.get('/metrics', (req: Request, res: Response) => {
   });
 });
 
-// =====================================================
-// Business Logic Endpoints - Inventory Service
-// =====================================================
-
-// Get all inventory items
 app.get('/inventory', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -140,7 +120,6 @@ app.get('/inventory', async (req: Request, res: Response) => {
   });
 });
 
-// Get item by ID
 app.get('/inventory/:id', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -162,7 +141,6 @@ app.get('/inventory/:id', async (req: Request, res: Response) => {
   res.json(item);
 });
 
-// Add inventory item
 app.post('/inventory', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -188,7 +166,6 @@ app.post('/inventory', async (req: Request, res: Response) => {
   res.status(201).json(item);
 });
 
-// Update inventory quantity
 app.patch('/inventory/:id/quantity', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -222,7 +199,6 @@ app.patch('/inventory/:id/quantity', async (req: Request, res: Response) => {
   res.json(item);
 });
 
-// Check availability
 app.get('/inventory/:id/availability', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -250,7 +226,6 @@ app.get('/inventory/:id/availability', async (req: Request, res: Response) => {
   });
 });
 
-// Delete inventory item
 app.delete('/inventory/:id', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -272,9 +247,6 @@ app.delete('/inventory/:id', async (req: Request, res: Response) => {
   res.status(204).send();
 });
 
-// =====================================================
-// Chaos Engineering Endpoints
-// =====================================================
 app.post('/chaos/failure', (req: Request, res: Response) => {
   const { enabled } = req.body;
   simulatedFailure = enabled === true;
@@ -316,9 +288,6 @@ app.post('/chaos/reset', (req: Request, res: Response) => {
   res.json({ message: 'All chaos settings reset' });
 });
 
-// =====================================================
-// Start Server
-// =====================================================
 app.listen(PORT, () => {
   console.log(`🚀 ${SERVICE_NAME} (Inventory Service) running on port ${PORT}`);
   console.log(`   Health: http://localhost:${PORT}/health`);

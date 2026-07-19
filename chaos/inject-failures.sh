@@ -1,51 +1,39 @@
 #!/bin/bash
 
-# =====================================================
-# Aegis - Chaos Engineering Scripts
-# Inject failures to test self-healing capabilities
-# =====================================================
-
 set -e
 
-# Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
-# Configuration
 SERVICES=("aegis-service-a" "aegis-service-b" "aegis-service-c")
 LOG_FILE="logs/chaos-log.json"
 
-# Helper function to log chaos events
 log_chaos() {
     local type=$1
     local target=$2
     local message=$3
     
     echo -e "${YELLOW}[CHAOS]${NC} $type on $target: $message"
-    
-    # Append to log file
+
     mkdir -p logs
     echo "{\"timestamp\":\"$(date -Iseconds)\",\"type\":\"$type\",\"target\":\"$target\",\"message\":\"$message\"}" >> "$LOG_FILE"
 }
 
-# Kill a random container
 kill_random_container() {
     local target=${SERVICES[$RANDOM % ${#SERVICES[@]}]}
     log_chaos "KILL" "$target" "Killing container"
     docker kill "$target" 2>/dev/null || echo "Container $target not running"
 }
 
-# Kill a specific container
 kill_container() {
     local target=$1
     log_chaos "KILL" "$target" "Killing container"
     docker kill "$target" 2>/dev/null || echo "Container $target not running"
 }
 
-# Throttle memory for a container
 throttle_memory() {
     local target=$1
     local limit=${2:-128m}
@@ -53,7 +41,6 @@ throttle_memory() {
     docker update --memory "$limit" "$target" 2>/dev/null || echo "Failed to update $target"
 }
 
-# Inject latency via service endpoint
 inject_latency() {
     local service=$1
     local latency=${2:-1000}
@@ -72,7 +59,6 @@ inject_latency() {
         -d "{\"ms\": $latency}" || echo "Failed to inject latency"
 }
 
-# Inject failure via service endpoint
 inject_failure() {
     local service=$1
     local port
@@ -90,7 +76,6 @@ inject_failure() {
         -d '{"enabled": true}' || echo "Failed to inject failure"
 }
 
-# Inject memory leak
 inject_memory_leak() {
     local service=$1
     local size=${2:-5000000}
@@ -109,7 +94,6 @@ inject_memory_leak() {
         -d "{\"size\": $size}" || echo "Failed to inject memory leak"
 }
 
-# Reset all chaos settings
 reset_chaos() {
     echo -e "${GREEN}Resetting all chaos settings...${NC}"
     
@@ -129,7 +113,6 @@ reset_chaos() {
     echo -e "${GREEN}Done!${NC}"
 }
 
-# Run a chaos scenario
 run_scenario() {
     local scenario=$1
     
@@ -167,7 +150,6 @@ run_scenario() {
     esac
 }
 
-# Interactive menu
 show_menu() {
     echo ""
     echo -e "${BLUE}╔════════════════════════════════════════════╗${NC}"
@@ -186,7 +168,6 @@ show_menu() {
     echo ""
 }
 
-# Show system status
 show_status() {
     echo -e "${BLUE}System Status:${NC}"
     echo "----------------------------------------"
@@ -207,10 +188,8 @@ show_status() {
     curl -s http://localhost:4001/status 2>/dev/null | head -1 || echo "  Healer not available"
 }
 
-# Main script
 main() {
     if [[ $# -eq 0 ]]; then
-        # Interactive mode
         while true; do
             show_menu
             read -p "Select option: " choice
@@ -257,7 +236,6 @@ main() {
             read -p "Press Enter to continue..."
         done
     else
-        # Command line mode
         case $1 in
             "kill") kill_container "$2" ;;
             "latency") inject_latency "$2" "$3" ;;

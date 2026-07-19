@@ -1,8 +1,3 @@
-// =====================================================
-// Service A - User Service
-// Aegis Self-Healing Distributed System
-// =====================================================
-
 import express, { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,7 +5,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const SERVICE_NAME = process.env.SERVICE_NAME || 'service-a';
 
-// Metrics storage
 interface Metrics {
   requestCount: number;
   errorCount: number;
@@ -25,12 +19,10 @@ const metrics: Metrics = {
   startTime: new Date(),
 };
 
-// Simulated failure states (for chaos testing)
 let simulatedFailure = false;
 let simulatedLatency = 0;
 let memoryLeak: number[] = [];
 
-// Middleware to track request metrics
 app.use((req: Request, res: Response, next: NextFunction) => {
   const startTime = Date.now();
   metrics.requestCount++;
@@ -38,8 +30,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   res.on('finish', () => {
     const latency = Date.now() - startTime;
     metrics.latencies.push(latency);
-    
-    // Keep only last 1000 latencies
+
     if (metrics.latencies.length > 1000) {
       metrics.latencies.shift();
     }
@@ -54,11 +45,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use(express.json());
 
-// =====================================================
-// Health Check Endpoint
-// =====================================================
 app.get('/health', async (req: Request, res: Response) => {
-  // Simulate failure if enabled
   if (simulatedFailure) {
     res.status(503).json({
       status: 'unhealthy',
@@ -69,13 +56,12 @@ app.get('/health', async (req: Request, res: Response) => {
     return;
   }
 
-  // Add simulated latency if set
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
   }
 
   const uptime = Math.floor((Date.now() - metrics.startTime.getTime()) / 1000);
-  
+
   res.json({
     status: 'healthy',
     serviceName: SERVICE_NAME,
@@ -85,12 +71,10 @@ app.get('/health', async (req: Request, res: Response) => {
   });
 });
 
-// =====================================================
-// Metrics Endpoint
-// =====================================================
 app.get('/metrics', (req: Request, res: Response) => {
   const memoryUsage = process.memoryUsage();
-  
+
+
   res.json({
     serviceName: SERVICE_NAME,
     timestamp: new Date().toISOString(),
@@ -107,11 +91,6 @@ app.get('/metrics', (req: Request, res: Response) => {
   });
 });
 
-// =====================================================
-// Business Logic Endpoints
-// =====================================================
-
-// Get all users
 app.get('/users', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -131,7 +110,6 @@ app.get('/users', async (req: Request, res: Response) => {
   });
 });
 
-// Get user by ID
 app.get('/users/:id', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -151,7 +129,6 @@ app.get('/users/:id', async (req: Request, res: Response) => {
   });
 });
 
-// Create user
 app.post('/users', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -171,51 +148,41 @@ app.post('/users', async (req: Request, res: Response) => {
   });
 });
 
-// =====================================================
-// Chaos Engineering Endpoints (for testing)
-// =====================================================
-
-// Enable/disable simulated failure
 app.post('/chaos/failure', (req: Request, res: Response) => {
   const { enabled } = req.body;
   simulatedFailure = enabled === true;
   res.json({ simulatedFailure });
 });
 
-// Set simulated latency
 app.post('/chaos/latency', (req: Request, res: Response) => {
   const { ms } = req.body;
   simulatedLatency = typeof ms === 'number' ? ms : 0;
   res.json({ simulatedLatency });
 });
 
-// Trigger memory leak (for testing)
 app.post('/chaos/memory-leak', (req: Request, res: Response) => {
   const { size } = req.body;
   const leakSize = typeof size === 'number' ? size : 1000000;
-  
-  // Allocate memory that won't be garbage collected
+
   for (let i = 0; i < leakSize; i++) {
     memoryLeak.push(Math.random());
   }
-  
-  res.json({ 
+
+  res.json({
     leakSize: memoryLeak.length,
     memoryUsage: process.memoryUsage(),
   });
 });
 
-// Clear memory leak
 app.post('/chaos/clear-memory', (req: Request, res: Response) => {
   memoryLeak = [];
-  global.gc && global.gc(); // Force GC if available
-  res.json({ 
+  global.gc && global.gc();
+  res.json({
     leakSize: memoryLeak.length,
     memoryUsage: process.memoryUsage(),
   });
 });
 
-// Reset all chaos settings
 app.post('/chaos/reset', (req: Request, res: Response) => {
   simulatedFailure = false;
   simulatedLatency = 0;
@@ -223,9 +190,6 @@ app.post('/chaos/reset', (req: Request, res: Response) => {
   res.json({ message: 'All chaos settings reset' });
 });
 
-// =====================================================
-// Start Server
-// =====================================================
 app.listen(PORT, () => {
   console.log(`🚀 ${SERVICE_NAME} running on port ${PORT}`);
   console.log(`   Health: http://localhost:${PORT}/health`);

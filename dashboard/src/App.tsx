@@ -158,7 +158,6 @@ function App() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-6 lg:p-8">
       <div className="max-w-[1800px] mx-auto">
-        {/* Header */}
         <header className="mb-6">
           <Card>
             <CardContent className="p-6">
@@ -198,7 +197,6 @@ function App() {
           </Card>
         </header>
 
-        {/* Chaos Injection Controls */}
         <Card className="mb-6">
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row md:items-center gap-4">
@@ -228,7 +226,6 @@ function App() {
           </div>
         ) : (
           <>
-            {/* Quick Stats Row */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               <Card className={overallHealth === 'critical' ? 'border-destructive' : undefined}>
                 <CardContent className="p-4 flex items-center gap-3">
@@ -273,7 +270,6 @@ function App() {
               </Card>
             </div>
 
-            {/* Main Grid - Services */}
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-4">
                 <Server className="w-5 h-5" />
@@ -286,13 +282,11 @@ function App() {
               </div>
             </div>
 
-            {/* Metrics and Evaluation Row */}
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
               <MetricsPanel services={systemStatus?.services || {}} theme={theme} />
               <EvaluationMetrics evalMetrics={evalMetrics} healerStatus={healerStatus} theme={theme} />
             </div>
 
-            {/* Anomalies and Timeline Row */}
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
               <AnomaliesPanel services={systemStatus?.services || {}} />
               <HealingTimeline logs={healingLogs} healerStatus={healerStatus} />

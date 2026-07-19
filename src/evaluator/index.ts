@@ -1,7 +1,3 @@
-// =====================================================
-// Aegis - Evaluator Service Entry Point
-// =====================================================
-
 import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
@@ -13,21 +9,15 @@ const app = express();
 const PORT = process.env.EVALUATOR_PORT || 4002;
 const MONITOR_URL = process.env.MONITOR_URL || 'http://monitor:4000';
 
-// Initialize evaluator
 const evaluator = new Evaluator();
 
 app.use(cors());
 app.use(express.json());
 
-// Track service states for recovery detection
 const serviceStates: Map<string, 'healthy' | 'unhealthy'> = new Map();
 
-// =====================================================
-// Evaluation Loop
-// =====================================================
 async function evaluationLoop(): Promise<void> {
   try {
-    // Fetch current status from monitor
     const statusResponse = await axios.get(`${MONITOR_URL}/status`);
     const { services } = statusResponse.data;
 
@@ -36,12 +26,10 @@ async function evaluationLoop(): Promise<void> {
       const currentHealth = serviceData.health;
       const anomalies = serviceData.anomalies || [];
 
-      // Detect new incidents
       if (currentHealth !== 'healthy' && previousState === 'healthy') {
         evaluator.recordDetection(serviceName, anomalies);
       }
 
-      // Detect recovery
       if (currentHealth === 'healthy' && previousState !== 'healthy') {
         evaluator.recordRecovery(serviceName, true);
       }
@@ -60,13 +48,8 @@ async function evaluationLoop(): Promise<void> {
   }
 }
 
-// Start evaluation loop
 setInterval(evaluationLoop, 5000);
 setTimeout(evaluationLoop, 5000);
-
-// =====================================================
-// API Endpoints
-// =====================================================
 
 // Called by the healer the moment it decides to act on a service, so MTTD
 // (detection -> healing start) and MTTR (healing start -> recovery) are
@@ -81,7 +64,6 @@ app.post('/incidents/healing-started', (req, res) => {
   res.json({ ok: true });
 });
 
-// Get current metrics
 app.get('/metrics', (req, res) => {
   const metrics = evaluator.calculateMetrics();
   res.json({
@@ -90,13 +72,11 @@ app.get('/metrics', (req, res) => {
   });
 });
 
-// Get full evaluation snapshot
 app.get('/snapshot', (req, res) => {
   const snapshot = evaluator.getSnapshot();
   res.json(snapshot);
 });
 
-// Get active incidents
 app.get('/incidents/active', (req, res) => {
   const incidents = evaluator.getActiveIncidents();
   res.json({
@@ -105,7 +85,6 @@ app.get('/incidents/active', (req, res) => {
   });
 });
 
-// Get incident history
 app.get('/incidents/history', (req, res) => {
   const limit = parseInt(req.query.limit as string) || 100;
   const incidents = evaluator.getIncidentHistory(limit);
@@ -115,7 +94,6 @@ app.get('/incidents/history', (req, res) => {
   });
 });
 
-// Get metrics timeline for charts
 app.get('/timeline', (req, res) => {
   const bucketSize = parseInt(req.query.bucket as string) || 300000;
   const timeline = evaluator.getMetricsTimeline(bucketSize);
@@ -126,13 +104,11 @@ app.get('/timeline', (req, res) => {
   });
 });
 
-// Get per-service metrics
 app.get('/services', (req, res) => {
   const serviceMetrics = evaluator.getServiceMetrics();
   res.json(serviceMetrics);
 });
 
-// Health check
 app.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
@@ -141,9 +117,6 @@ app.get('/health', (req, res) => {
   });
 });
 
-// =====================================================
-// Start Server
-// =====================================================
 app.listen(PORT, () => {
   logger.info(`📊 Aegis Evaluator running on port ${PORT}`);
 });

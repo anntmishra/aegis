@@ -1,8 +1,3 @@
-// =====================================================
-// Service B - Order Service
-// Aegis Self-Healing Distributed System
-// =====================================================
-
 import express, { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,7 +5,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const SERVICE_NAME = process.env.SERVICE_NAME || 'service-b';
 
-// Metrics storage
 interface Metrics {
   requestCount: number;
   errorCount: number;
@@ -25,15 +19,12 @@ const metrics: Metrics = {
   startTime: new Date(),
 };
 
-// Simulated orders database
 const orders: Map<string, any> = new Map();
 
-// Simulated failure states
 let simulatedFailure = false;
 let simulatedLatency = 0;
 let memoryLeak: number[] = [];
 
-// Middleware to track request metrics
 app.use((req: Request, res: Response, next: NextFunction) => {
   const startTime = Date.now();
   metrics.requestCount++;
@@ -56,9 +47,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use(express.json());
 
-// =====================================================
-// Health Check Endpoint
-// =====================================================
 app.get('/health', async (req: Request, res: Response) => {
   if (simulatedFailure) {
     res.status(503).json({
@@ -85,9 +73,6 @@ app.get('/health', async (req: Request, res: Response) => {
   });
 });
 
-// =====================================================
-// Metrics Endpoint
-// =====================================================
 app.get('/metrics', (req: Request, res: Response) => {
   const memoryUsage = process.memoryUsage();
   
@@ -107,11 +92,6 @@ app.get('/metrics', (req: Request, res: Response) => {
   });
 });
 
-// =====================================================
-// Business Logic Endpoints - Order Service
-// =====================================================
-
-// Get all orders
 app.get('/orders', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -128,7 +108,6 @@ app.get('/orders', async (req: Request, res: Response) => {
   });
 });
 
-// Get order by ID
 app.get('/orders/:id', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -150,7 +129,6 @@ app.get('/orders/:id', async (req: Request, res: Response) => {
   res.json(order);
 });
 
-// Create order
 app.post('/orders', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -177,7 +155,6 @@ app.post('/orders', async (req: Request, res: Response) => {
   res.status(201).json(order);
 });
 
-// Update order status
 app.patch('/orders/:id/status', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -204,7 +181,6 @@ app.patch('/orders/:id/status', async (req: Request, res: Response) => {
   res.json(order);
 });
 
-// Delete order
 app.delete('/orders/:id', async (req: Request, res: Response) => {
   if (simulatedLatency > 0) {
     await new Promise(resolve => setTimeout(resolve, simulatedLatency));
@@ -226,9 +202,6 @@ app.delete('/orders/:id', async (req: Request, res: Response) => {
   res.status(204).send();
 });
 
-// =====================================================
-// Chaos Engineering Endpoints
-// =====================================================
 app.post('/chaos/failure', (req: Request, res: Response) => {
   const { enabled } = req.body;
   simulatedFailure = enabled === true;
@@ -270,9 +243,6 @@ app.post('/chaos/reset', (req: Request, res: Response) => {
   res.json({ message: 'All chaos settings reset' });
 });
 
-// =====================================================
-// Start Server
-// =====================================================
 app.listen(PORT, () => {
   console.log(`🚀 ${SERVICE_NAME} (Order Service) running on port ${PORT}`);
   console.log(`   Health: http://localhost:${PORT}/health`);

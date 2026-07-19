@@ -1,8 +1,3 @@
-// =====================================================
-// Aegis - Evaluation Metrics
-// Tracks MTTD, MTTR, and recovery success rates
-// =====================================================
-
 import { v4 as uuidv4 } from 'uuid';
 import { createLogger } from '../shared/logger';
 import { EvaluationMetrics, Anomaly } from '../shared/types';
@@ -39,17 +34,12 @@ export class Evaluator {
     this.windowSize = windowSize;
   }
 
-  /**
-   * Record when an anomaly is first detected
-   */
   recordDetection(serviceName: string, anomalies: Anomaly[]): string {
     const incidentId = uuidv4();
     const now = new Date();
 
-    // Check if there's already an active incident for this service
     for (const [id, incident] of this.incidents) {
       if (incident.serviceName === serviceName && incident.status !== 'resolved') {
-        // Update existing incident with new anomalies
         incident.anomalies = [...incident.anomalies, ...anomalies];
         logger.debug(`Updated existing incident ${id} for ${serviceName}`);
         return id;
@@ -70,11 +60,8 @@ export class Evaluator {
     return incidentId;
   }
 
-  /**
-   * Record when healing action starts for a service's active incident.
-   * Only transitions 'detected' incidents — a no-op if already healing, so
-   * repeated polling won't keep resetting healingStartedAt.
-   */
+  // Only transitions 'detected' incidents — a no-op if already healing, so
+  // repeated polling won't keep resetting healingStartedAt.
   recordHealingStart(serviceName: string): void {
     const incident = this.findIncidentByService(serviceName);
 
@@ -90,28 +77,23 @@ export class Evaluator {
     }
   }
 
-  /**
-   * Record when service is recovered
-   */
+  // Accept recovery from 'detected' too — a service can recover on its own
+  // before the healer ever acts (still resolved, just contributes no MTTR
+  // sample and counts toward falsePositives via the missing healingStartedAt).
   recordRecovery(serviceName: string, success: boolean): void {
     const incident = this.findIncidentByService(serviceName);
 
-    // Accept recovery from 'detected' too — a service can recover on its own
-    // before the healer ever acts (still resolved, just contributes no MTTR
-    // sample and counts toward falsePositives via the missing healingStartedAt).
     if (incident && (incident.status === 'healing' || incident.status === 'detected')) {
       incident.resolvedAt = new Date();
       incident.status = success ? 'resolved' : 'failed';
-      
+
       if (incident.healingStartedAt) {
         incident.timeToRecover = incident.resolvedAt.getTime() - incident.healingStartedAt.getTime();
       }
 
-      // Move to resolved incidents
       this.incidents.delete(incident.id);
       this.resolvedIncidents.push(incident);
 
-      // Trim history
       if (this.resolvedIncidents.length > this.maxHistory) {
         this.resolvedIncidents.shift();
       }
@@ -124,9 +106,6 @@ export class Evaluator {
     }
   }
 
-  /**
-   * Find active incident by service name
-   */
   private findIncidentByService(serviceName: string): Incident | undefined {
     for (const incident of this.incidents.values()) {
       if (incident.serviceName === serviceName) {
@@ -136,46 +115,39 @@ export class Evaluator {
     return undefined;
   }
 
-  /**
-   * Calculate current evaluation metrics
-   */
   calculateMetrics(): EvaluationMetrics {
     const now = Date.now();
     const windowStart = now - this.windowSize;
 
-    // Filter incidents within window
     const windowIncidents = this.resolvedIncidents.filter(
       i => i.resolvedAt && i.resolvedAt.getTime() >= windowStart
     );
 
-    // Calculate MTTD (Mean Time To Detect)
     const detectTimes = windowIncidents
       .filter(i => i.timeToDetect !== undefined)
       .map(i => i.timeToDetect!);
-    
+
     const mttd = detectTimes.length > 0
-      ? detectTimes.reduce((a, b) => a + b, 0) / detectTimes.length / 1000 // Convert to seconds
+      ? detectTimes.reduce((a, b) => a + b, 0) / detectTimes.length / 1000
       : 0;
 
-    // Calculate MTTR (Mean Time To Recover)
     const recoverTimes = windowIncidents
       .filter(i => i.timeToRecover !== undefined)
       .map(i => i.timeToRecover!);
-    
+
     const mttr = recoverTimes.length > 0
-      ? recoverTimes.reduce((a, b) => a + b, 0) / recoverTimes.length / 1000 // Convert to seconds
+      ? recoverTimes.reduce((a, b) => a + b, 0) / recoverTimes.length / 1000
       : 0;
 
-    // Calculate success rate
     const resolvedCount = windowIncidents.filter(i => i.status === 'resolved').length;
     const failedCount = windowIncidents.filter(i => i.status === 'failed').length;
     const totalIncidents = resolvedCount + failedCount;
-    
+
     const successRate = totalIncidents > 0
       ? (resolvedCount / totalIncidents) * 100
       : 100;
 
-    // Count false positives (incidents that resolved without the healer ever acting)
+    // Incidents that resolved without the healer ever acting
     const falsePositives = windowIncidents.filter(
       i => i.status === 'resolved' && !i.healingStartedAt
     ).length;
@@ -190,9 +162,6 @@ export class Evaluator {
     };
   }
 
-  /**
-   * Get evaluation snapshot
-   */
   getSnapshot(): EvaluationSnapshot {
     const now = new Date();
     return {
@@ -200,27 +169,18 @@ export class Evaluator {
       windowStart: new Date(now.getTime() - this.windowSize),
       windowEnd: now,
       metrics: this.calculateMetrics(),
-      incidents: [...this.resolvedIncidents.slice(-50)], // Last 50 incidents
+      incidents: [...this.resolvedIncidents.slice(-50)],
     };
   }
 
-  /**
-   * Get active incidents
-   */
   getActiveIncidents(): Incident[] {
     return Array.from(this.incidents.values());
   }
 
-  /**
-   * Get incident history
-   */
   getIncidentHistory(limit: number = 100): Incident[] {
     return this.resolvedIncidents.slice(-limit);
   }
 
-  /**
-   * Get metrics over time (for charts)
-   */
   getMetricsTimeline(bucketSize: number = 300000): Array<{
     timestamp: Date;
     mttd: number;
@@ -231,17 +191,15 @@ export class Evaluator {
     const now = Date.now();
     const buckets: Map<number, Incident[]> = new Map();
 
-    // Group incidents into time buckets
     for (const incident of this.resolvedIncidents) {
       if (!incident.resolvedAt) continue;
-      
+
       const bucketTime = Math.floor(incident.resolvedAt.getTime() / bucketSize) * bucketSize;
       const bucket = buckets.get(bucketTime) || [];
       bucket.push(incident);
       buckets.set(bucketTime, bucket);
     }
 
-    // Calculate metrics for each bucket
     const timeline: Array<{
       timestamp: Date;
       mttd: number;
@@ -280,9 +238,6 @@ export class Evaluator {
     return timeline;
   }
 
-  /**
-   * Get service-specific metrics
-   */
   getServiceMetrics(): Record<string, {
     totalIncidents: number;
     resolvedIncidents: number;
@@ -294,7 +249,6 @@ export class Evaluator {
       incidents: Incident[];
     }> = {};
 
-    // Group by service
     for (const incident of this.resolvedIncidents) {
       if (!serviceMetrics[incident.serviceName]) {
         serviceMetrics[incident.serviceName] = { incidents: [] };
@@ -302,7 +256,6 @@ export class Evaluator {
       serviceMetrics[incident.serviceName].incidents.push(incident);
     }
 
-    // Calculate metrics per service
     const result: Record<string, any> = {};
 
     for (const [serviceName, data] of Object.entries(serviceMetrics)) {

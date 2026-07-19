@@ -72,7 +72,6 @@ export function MetricsPanel({ services, theme }: MetricsPanelProps) {
         </div>
       </CardHeader>
       <CardContent>
-        {/* Latency Chart — single hue (grayscale ink), three percentiles */}
         <div className="mb-6">
           <h4 className="text-sm font-medium text-muted-foreground mb-3">Latency Percentiles</h4>
           <div className="bg-muted/40 rounded-lg p-4">
@@ -98,7 +97,6 @@ export function MetricsPanel({ services, theme }: MetricsPanelProps) {
           </div>
         </div>
 
-        {/* Resource Usage — two honest small multiples, each on its own scale */}
         <div>
           <h4 className="text-sm font-medium text-muted-foreground mb-3">Resource Utilization</h4>
           <div className="grid grid-cols-2 gap-3">
